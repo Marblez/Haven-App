@@ -45,16 +45,6 @@
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView" />
 
-    <TextView
-        android:text="Filtered Air"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/progressBar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp" />
-
     <Switch
         android:text="Air Filter"
         android:layout_width="wrap_content"
@@ -130,5 +120,23 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textView6" />
+
+    <TextView
+        android:text="Filtered Air"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/progressBar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Order a new filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button2" />
 
 </RelativeLayout>
