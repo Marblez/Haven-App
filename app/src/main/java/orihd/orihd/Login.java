@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -42,6 +44,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         callbackManager = CallbackManager.Factory.create();
         setSupportActionBar(toolbar);
         // Layout setup
+
+
+
+
 
 
 
@@ -85,9 +91,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button:
-                Intent registerIntent1 = new Intent(Login.this, Home.class);
-                Login.this.startActivity(registerIntent1);
-                break;
+                AccessToken token;
+                token = AccessToken.getCurrentAccessToken();
+
+                if (token != null) {
+                    //Means user is logged in
+                    Intent registerIntent12 = new Intent(Login.this, Home.class);
+                    Login.this.startActivity(registerIntent12);
+                }
+
+                else {
+                    Toast.makeText(getApplicationContext(), "You must login first", Toast.LENGTH_LONG).show();
+                    break;
+                }
         }
     }
 }
