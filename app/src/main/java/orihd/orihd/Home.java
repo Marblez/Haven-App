@@ -1,6 +1,8 @@
 package orihd.orihd;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +21,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
     private TextView textView;
     private Handler handler = new Handler();
     private Switch filter;
-
+    ProgressBar progressBarc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
         Button newfilter = (Button) findViewById(R.id.button2);
         textView = (TextView) findViewById(R.id.textView3);
         filter = (Switch) findViewById(R.id.switch1);
+        progressBarc = (ProgressBar)findViewById(R.id.progressBarBattery);
+        progressBarc.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
         newfilter.setOnClickListener(this);
         //Long operation by thread
 

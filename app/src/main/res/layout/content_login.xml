@@ -55,7 +55,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="My Friends"
+        android:text="My Pet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -65,7 +65,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="My Pet"
+        android:text="Settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button3"
