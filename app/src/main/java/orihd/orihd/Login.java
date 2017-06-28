@@ -35,6 +35,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private CallbackManager callbackManager;
     Button login;
     Button friends;
+    Button mypet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +58,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         info = (TextView)findViewById(R.id.info);
         loginButton = (LoginButton)findViewById(R.id.login_button);
         login = (Button)findViewById(R.id.button);
-        friends = (Button)findViewById(R.id.button3);
-
+        friends = (Button)findViewById(R.id.button4);
+        mypet = (Button)findViewById(R.id.button3);
         login.setOnClickListener(this);
+        mypet.setOnClickListener(this);
 
 
 
@@ -93,9 +95,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.button3:
+            case R.id.button4:
                 Intent registerIntent123 = new Intent(Login.this, friends.class);
                 Login.this.startActivity(registerIntent123);
+
+                break;
+
+            case R.id.button3:
+                Intent registerIntent1234 = new Intent(Login.this, mypet.class);
+                Login.this.startActivity(registerIntent1234);
 
                 break;
             case R.id.button:

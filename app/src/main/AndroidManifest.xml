@@ -36,7 +36,8 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".Home" />
-        <activity android:name=".friends"></activity>
+        <activity android:name=".friends" />
+        <activity android:name=".mypet"></activity>
     </application>
 
 </manifest>

@@ -178,7 +178,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
-        android:layout_alignTop="@+id/textSwitcher"
+        android:layout_alignBaseline="@+id/txtview"
+        android:layout_alignBottom="@+id/txtview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -192,7 +193,7 @@
         android:minWidth="130dp"
         android:progress="45"
         android:progressTint="@color/com_facebook_button_send_background_color"
-        android:layout_below="@+id/progressBar2"
+        android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/progressBar2"
         android:layout_alignStart="@+id/progressBar2" />
 
@@ -201,7 +202,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtview"
-        android:layout_alignTop="@+id/textSwitcher"
+        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>
