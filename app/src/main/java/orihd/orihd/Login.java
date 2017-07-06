@@ -22,8 +22,15 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.internal.ImageRequest;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -33,6 +40,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private TextView info;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
+    String Email;
+    String Name;
     Button login;
     Button friends;
     Button mypet;
@@ -51,12 +60,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         AccessToken token;
         token = AccessToken.getCurrentAccessToken();
 
+        Profile profile = Profile.getCurrentProfile().getCurrentProfile();
+
+
         if (token != null) {
             //Means user is logged in
             Intent registerIntenthome = new Intent(Login.this, Homemenu.class);
             Login.this.startActivity(registerIntenthome);
             finish();
         }
+
 
         setContentView(R.layout.content_login);
         info = (TextView)findViewById(R.id.info);
@@ -98,6 +111,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -135,4 +149,54 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 }
         }
     }
+    private void setFacebookData(final LoginResult loginResult)
+    {
+        GraphRequest request = GraphRequest.newMeRequest(
+                loginResult.getAccessToken(),
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        // Application code
+                        try {
+                            Log.i("Response",response.toString());
+
+                            String email = response.getJSONObject().getString("email");
+                            String firstName = response.getJSONObject().getString("first_name");
+                            String lastName = response.getJSONObject().getString("last_name");
+                            String gender = response.getJSONObject().getString("gender");
+
+                            Email = email;
+                            Name = firstName + " " + lastName;
+
+
+                            Profile profile = Profile.getCurrentProfile();
+                            String id = profile.getId();
+                            String link = profile.getLinkUri().toString();
+                            Log.i("Link",link);
+                            if (Profile.getCurrentProfile()!=null)
+                            {
+                                Log.i("Login", "ProfilePic" + Profile.getCurrentProfile().getProfilePictureUri(200, 200));
+                            }
+
+                            Log.i("Login" + "Email", email);
+                            Log.i("Login"+ "FirstName", firstName);
+                            Log.i("Login" + "LastName", lastName);
+                            Log.i("Login" + "Gender", gender);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,email,first_name,last_name,gender");
+        request.setParameters(parameters);
+        request.executeAsync();
+    }
+
+    public String getName(){
+        return Name;
+    }
+
 }

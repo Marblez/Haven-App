@@ -43,9 +43,8 @@ public class Homemenu extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayShowHomeEnabled(false);\
-        
+
+
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,       WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         this.setContentView(R.layout.activity_homemenu);
@@ -64,6 +63,16 @@ public class Homemenu extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        int[] imageResId = {
+                R.drawable.clean,
+                R.drawable.clean,
+                R.drawable.clean,
+                R.drawable.clean};
+
+        for (int i = 0; i < imageResId.length; i++) {
+            tabLayout.getTabAt(i).setIcon(imageResId[i]);
+        }
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +81,8 @@ public class Homemenu extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
 
     }
 
@@ -147,7 +158,7 @@ public class Homemenu extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch(position){
                 case 0:
-                    FragmentTab1 tab1 = (FragmentTab1) new Fragment();
+                    FragmentTab1 tab1 = new FragmentTab1();
                     return tab1;
             }
             return PlaceholderFragment.newInstance(position + 1);
@@ -156,20 +167,34 @@ public class Homemenu extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
+        private int[] imageResId = {
+                R.drawable.feed,
+                R.drawable.clean,
+                R.drawable.feed };
+
+        
+        
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+
+                    return "";
                 case 1:
-                    return "SECTION 2";
+                    return "";
                 case 2:
-                    return "SECTION 3";
+                    return "";
+                case 3:
+                    return "";
+
+
             }
             return null;
         }
+
+
     }
 }
