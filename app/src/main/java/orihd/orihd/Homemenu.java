@@ -1,9 +1,8 @@
 package orihd.orihd;
 
-import android.app.ActionBar;
+import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -18,9 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
-public class Dashboard extends AppCompatActivity {
+public class Homemenu extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -36,12 +37,19 @@ public class Dashboard extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-    ActionBar home, challenges, guidance, community,notifications, settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);\
+        
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,       WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        this.setContentView(R.layout.activity_homemenu);
+        setContentView(R.layout.activity_homemenu);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,7 +61,8 @@ public class Dashboard extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +79,7 @@ public class Dashboard extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
+        getMenuInflater().inflate(R.menu.menu_homemenu, menu);
         return true;
     }
 
@@ -111,14 +120,13 @@ public class Dashboard extends AppCompatActivity {
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
-
             return fragment;
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_homemenu, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
@@ -137,8 +145,11 @@ public class Dashboard extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
+            switch(position){
+                case 0:
+                    FragmentTab1 tab1 = (FragmentTab1) new Fragment();
+                    return tab1;
+            }
             return PlaceholderFragment.newInstance(position + 1);
         }
 
@@ -152,17 +163,11 @@ public class Dashboard extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Home";
+                    return "SECTION 1";
                 case 1:
-                    return "Challenges";
+                    return "SECTION 2";
                 case 2:
-                    return "Guidance";
-                case 3:
-                    return "Community";
-                case 4:
-                    return "Notifications";
-                case 5:
-                    return "Settings";
+                    return "SECTION 3";
             }
             return null;
         }

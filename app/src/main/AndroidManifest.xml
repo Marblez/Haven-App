@@ -18,6 +18,7 @@
             android:name=".Login"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="OriHD"
+
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,13 +40,13 @@
         <activity android:name=".friends" />
         <activity android:name=".mypet" />
         <activity android:name=".Guidance" />
-        <activity
-            android:name=".Dashboard"
-            android:label="@string/title_activity_dashboard"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FragmentTab1" />
         <activity android:name=".FragmentTab2" />
-        <activity android:name=".FragmentTab3"></activity>
+        <activity android:name=".FragmentTab3" />
+        <activity
+            android:name=".Homemenu"
+            android:label="@string/title_activity_homemenu"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         if (token != null) {
             //Means user is logged in
-            Intent registerIntenthome = new Intent(Login.this, Dashboard.class);
+            Intent registerIntenthome = new Intent(Login.this, Homemenu.class);
             Login.this.startActivity(registerIntenthome);
             finish();
         }
