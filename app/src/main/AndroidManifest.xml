@@ -37,7 +37,15 @@
 
         <activity android:name=".Home" />
         <activity android:name=".friends" />
-        <activity android:name=".mypet"></activity>
+        <activity android:name=".mypet" />
+        <activity android:name=".Guidance" />
+        <activity
+            android:name=".Dashboard"
+            android:label="@string/title_activity_dashboard"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".FragmentTab1" />
+        <activity android:name=".FragmentTab2" />
+        <activity android:name=".FragmentTab3"></activity>
     </application>
 
 </manifest>

@@ -36,6 +36,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     Button login;
     Button friends;
     Button mypet;
+    Button guidance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +48,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         setSupportActionBar(toolbar);
         // Layout setup
 
+        AccessToken token;
+        token = AccessToken.getCurrentAccessToken();
 
-
-
-
-
-
+        if (token != null) {
+            //Means user is logged in
+            Intent registerIntenthome = new Intent(Login.this, Dashboard.class);
+            Login.this.startActivity(registerIntenthome);
+            finish();
+        }
 
         setContentView(R.layout.content_login);
         info = (TextView)findViewById(R.id.info);
@@ -60,8 +64,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         login = (Button)findViewById(R.id.button);
         friends = (Button)findViewById(R.id.button4);
         mypet = (Button)findViewById(R.id.button3);
+        guidance = (Button)findViewById(R.id.button5);
         login.setOnClickListener(this);
         mypet.setOnClickListener(this);
+        guidance.setOnClickListener(this);
 
 
 
@@ -106,6 +112,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 Login.this.startActivity(registerIntent1234);
 
                 break;
+
+            case R.id.button5:
+                Intent registerIntent12345 = new Intent(Login.this, Guidance.class);
+                Login.this.startActivity(registerIntent12345);
+
+                break;
+
             case R.id.button:
                 AccessToken token;
                 token = AccessToken.getCurrentAccessToken();

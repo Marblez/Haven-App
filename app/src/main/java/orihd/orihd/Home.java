@@ -1,6 +1,7 @@
 package orihd.orihd;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 public class Home extends AppCompatActivity implements View.OnClickListener{
     private ProgressBar progressBar;
     private int progressStatus = 30;
+    private int battery = 45;
     private TextView textView;
     private Handler handler = new Handler();
     private Switch filter;
@@ -29,14 +31,34 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home);
         progressBar = (ProgressBar) findViewById(R.id.progressBar2);
+        progressBarc = (ProgressBar)findViewById(R.id.progressBarBattery);
         Button newfilter = (Button) findViewById(R.id.button2);
         textView = (TextView) findViewById(R.id.textView3);
         filter = (Switch) findViewById(R.id.switch1);
-        progressBarc = (ProgressBar)findViewById(R.id.progressBarBattery);
         progressBarc.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
         newfilter.setOnClickListener(this);
         //Long operation by thread
 
+
+        if(battery < 25){
+            progressBarc.getIndeterminateDrawable().setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.MULTIPLY);
+        }
+        else if(battery > 50){
+            progressBarc.getIndeterminateDrawable().setColorFilter(Color.GREEN, android.graphics.PorterDuff.Mode.MULTIPLY);
+        }
+        else if(battery > 25){
+            progressBarc.getIndeterminateDrawable().setColorFilter(Color.YELLOW, android.graphics.PorterDuff.Mode.MULTIPLY);
+        }
+
+        if(progressStatus < 25){
+            progressBar.getIndeterminateDrawable().setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.MULTIPLY);
+        }
+        else if(progressStatus > 50){
+            progressBar.getIndeterminateDrawable().setColorFilter(Color.GREEN, android.graphics.PorterDuff.Mode.MULTIPLY);
+        }
+        else if(progressStatus > 25){
+            progressBar.getIndeterminateDrawable().setColorFilter(Color.YELLOW, android.graphics.PorterDuff.Mode.MULTIPLY);
+        }
 
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
