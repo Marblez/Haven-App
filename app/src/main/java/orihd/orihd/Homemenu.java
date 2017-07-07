@@ -1,5 +1,6 @@
 package orihd.orihd;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -103,6 +104,8 @@ public class Homemenu extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent registerIntentlogin = new Intent(Homemenu.this, Login.class);
+            Homemenu.this.startActivity(registerIntentlogin);
             return true;
         }
 
