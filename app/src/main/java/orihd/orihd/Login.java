@@ -23,11 +23,15 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
+
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.internal.ImageRequest;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.tencent.mm.sdk.modelmsg.SendAuth;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,6 +50,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     Button friends;
     Button mypet;
     Button guidance;
+    private IWXAPI api;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +60,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         callbackManager = CallbackManager.Factory.create();
         setSupportActionBar(toolbar);
+        api = WXAPIFactory.createWXAPI(this, WXEntryActivity.API_ID , false);
         // Layout setup
 
         AccessToken token;
@@ -181,6 +187,35 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     public String getName(){
         return Name;
+    }
+    public void onResume(){
+        super.onResume();
+        if(WXEntryActivity.token != null){
+            Toast.makeText(this, "Token: " + WXEntryActivity.token, Toast.LENGTH_LONG).show();
+            WXEntryActivity.token = null;
+        }
+    }
+
+    /**
+     * Register first. This notifies WeChat about your application.
+     * @param view
+     */
+    public void onClickRegisterButton(View view) {
+        boolean success = api.registerApp(WXEntryActivity.API_ID);
+        Toast.makeText(this, "Registration Success: " + success, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * Send an authorization request to WeChat. If successful, you will be moved to the WeChat
+     * app and you should see the application details you registered through the portal. When
+     * you grant access, WeChat should close and sent a response to WXEntryActivity.
+     * @param view
+     */
+    public void onClickLoginButton(View view) {
+        SendAuth.Req req = new SendAuth.Req();
+        req.scope = "snsapi_userinfo";
+        req.state = "none";
+        api.sendReq(req);
     }
 
 }
