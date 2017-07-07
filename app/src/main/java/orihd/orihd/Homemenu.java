@@ -22,6 +22,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 public class Homemenu extends AppCompatActivity {
 
     /**
@@ -161,7 +163,12 @@ public class Homemenu extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch(position){
                 case 0:
-                    FragmentTab1 tab1 = new FragmentTab1();
+                    FragmentTab1 tab1 = null;
+                    try {
+                        tab1 = new FragmentTab1();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     return tab1;
             }
             return PlaceholderFragment.newInstance(position + 1);
