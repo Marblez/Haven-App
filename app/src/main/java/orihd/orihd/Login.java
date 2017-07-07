@@ -63,24 +63,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         Profile profile = Profile.getCurrentProfile().getCurrentProfile();
 
 
-        if (token != null) {
-            //Means user is logged in
-            Intent registerIntenthome = new Intent(Login.this, Homemenu.class);
-            Login.this.startActivity(registerIntenthome);
-            finish();
-        }
+
 
 
         setContentView(R.layout.content_login);
-        info = (TextView)findViewById(R.id.info);
+
         loginButton = (LoginButton)findViewById(R.id.login_button);
-        login = (Button)findViewById(R.id.button);
-        friends = (Button)findViewById(R.id.button4);
+
+
         mypet = (Button)findViewById(R.id.button3);
-        guidance = (Button)findViewById(R.id.button5);
-        login.setOnClickListener(this);
         mypet.setOnClickListener(this);
-        guidance.setOnClickListener(this);
+
 
 
 
@@ -115,23 +108,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.button4:
-                Intent registerIntent123 = new Intent(Login.this, friends.class);
-                Login.this.startActivity(registerIntent123);
 
-                break;
 
             case R.id.button3:
-                Intent registerIntent1234 = new Intent(Login.this, mypet.class);
+                Intent registerIntent1234 = new Intent(Login.this, Homemenu.class);
                 Login.this.startActivity(registerIntent1234);
 
                 break;
 
-            case R.id.button5:
-                Intent registerIntent12345 = new Intent(Login.this, Guidance.class);
-                Login.this.startActivity(registerIntent12345);
-
-                break;
 
             case R.id.button:
                 AccessToken token;

@@ -42,7 +42,7 @@ public class FragmentTab1 extends Fragment {
         TextView change = (TextView) rootview.findViewById(R.id.NameText);
         final ImageView pic = (ImageView) rootview.findViewById(R.id.imageView3);
         change.setText(fullname);
-        pic.setImageBitmap(mIcon);
+        //pic.setImageBitmap(mIcon);
 
 
     return rootview;
@@ -55,7 +55,7 @@ public class FragmentTab1 extends Fragment {
     String facebook_id = profile.getId();
 
     URL img_value = new URL("https://graph.facebook.com/" + facebook_id + "/picture?type=large");
-    Bitmap mIcon = BitmapFactory.decodeStream(img_value.openConnection().getInputStream());
+    //Bitmap mIcon = BitmapFactory.decodeStream(img_value.openConnection().getInputStream());
 
 
 
