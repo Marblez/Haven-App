@@ -68,9 +68,9 @@ public class Homemenu extends AppCompatActivity {
 
         int[] imageResId = {
                 R.drawable.homeicon,
-                R.drawable.clean,
-                R.drawable.clean,
-                R.drawable.clean};
+                R.drawable.community,
+                R.drawable.guidanceicon,
+                R.drawable.settingsicon};
 
         for (int i = 0; i < imageResId.length; i++) {
             tabLayout.getTabAt(i).setIcon(imageResId[i]);
