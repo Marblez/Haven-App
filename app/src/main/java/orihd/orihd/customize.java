@@ -20,7 +20,7 @@ public class customize extends AppCompatActivity implements AdapterView.OnItemSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customize);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        
+
         EditText newtag = (EditText) findViewById(R.id.editText);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
