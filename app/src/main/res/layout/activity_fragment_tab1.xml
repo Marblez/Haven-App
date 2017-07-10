@@ -16,6 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar3"
+        android:progressTint="@color/com_facebook_button_send_background_color"
         android:max="100"
         android:minHeight="50dp"
         android:minWidth="130dp"
@@ -175,6 +176,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
         android:id="@+id/progressBar"
+        android:progressTint="@color/gray"
         android:max="100"
         android:minHeight="50dp"
         android:minWidth="130dp"
@@ -203,7 +205,7 @@
         android:minHeight="50dp"
         android:minWidth="130dp"
         android:progress="45"
-        android:progressTint="@color/com_facebook_button_send_background_color"
+        android:progressTint="@color/yellow"
         android:layout_below="@+id/progressBar2"
         android:layout_alignLeft="@+id/progressBar2"
         android:layout_alignStart="@+id/progressBar2" />
@@ -256,7 +258,7 @@
         android:minHeight="50dp"
         android:minWidth="130dp"
         android:progress="30"
-        android:progressTint="@color/colorPrimary"
+        android:progressTint="@color/green"
         android:layout_below="@+id/progressBarBattery"
         android:layout_alignLeft="@+id/progressBarBattery"
         android:layout_alignStart="@+id/progressBarBattery" />
