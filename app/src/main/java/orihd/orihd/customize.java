@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ public class customize extends AppCompatActivity implements AdapterView.OnItemSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customize);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        EditText newtag = (EditText) findViewById(R.id.editText);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -44,15 +46,28 @@ public class customize extends AppCompatActivity implements AdapterView.OnItemSe
         six.setOnClickListener(this);
 
 
+    }
 
+    public String FindTag(){
+        EditText newtag = (EditText) findViewById(R.id.editText);
+        String TagInfo = newtag.getText().toString();
+        return TagInfo;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
             case R.id.button4:
+                String TagInfo = FindTag();
+                if(TagInfo != null){
+                    FragmentTab1.globaltext = TagInfo;
+                    Intent registerIntent1234 = new Intent(customize.this, Login.class);
+                    customize.this.startActivity(registerIntent1234);
+                }
+                else{
                 Intent registerIntent1234 = new Intent(customize.this, Login.class);
-                customize.this.startActivity(registerIntent1234);
+                customize.this.startActivity(registerIntent1234);}
                 break;
             case R.id.imageButton:
                 FragmentTab1.globalimage.setImageResource(R.drawable.emptyface);

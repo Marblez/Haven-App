@@ -19,79 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textView16" />
-
-    <TextView
-        android:text="Change Profile Picture"
-        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
-        android:textSize="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView14"
-        android:layout_marginTop="85dp"
-        android:layout_below="@+id/textView16"
-        android:layout_centerHorizontal="true" />
-
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:srcCompat="@drawable/emptyface"
-        android:scaleType="fitXY"
-        android:layout_below="@+id/textView14"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="28dp"
-        android:id="@+id/imageButton" />
-
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/emptyface2"
-        android:id="@+id/imageButton3"
-        android:layout_alignTop="@+id/imageButton"
-        android:layout_centerHorizontal="true" />
-
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:srcCompat="@drawable/mario"
-        android:id="@+id/imageButton4"
-        android:scaleType="fitXY"
-        android:layout_alignTop="@+id/imageButton3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:srcCompat="@drawable/jesus"
-        android:layout_below="@+id/imageButton"
-        android:scaleType="fitXY"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="66dp"
-        android:id="@+id/imageButton5" />
-
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:srcCompat="@drawable/troll"
-        android:scaleType="fitXY"
-        android:id="@+id/imageButton6"
-        android:layout_alignTop="@+id/imageButton5"
-        android:layout_alignLeft="@+id/imageButton3"
-        android:layout_alignStart="@+id/imageButton3" />
-
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/chicken"
-        android:layout_alignTop="@+id/imageButton6"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/imageButton2" />
+        android:id="@+id/textView14" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -109,5 +37,27 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/button4" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Insert Tag Here"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_above="@+id/button4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="157dp" />
+
+    <TextView
+        android:text="Add Your Own Tag"
+        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
+        android:textSize="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView16"
+        android:layout_marginBottom="22dp"
+        android:layout_above="@+id/editText"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
