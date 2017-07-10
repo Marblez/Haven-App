@@ -40,6 +40,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
+
 public class Login extends AppCompatActivity implements View.OnClickListener {
     private TextView info;
     private LoginButton loginButton;
@@ -60,7 +61,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         callbackManager = CallbackManager.Factory.create();
         setSupportActionBar(toolbar);
-        api = WXAPIFactory.createWXAPI(this, WXEntryActivity.API_ID , false);
+
         // Layout setup
 
         AccessToken token;
@@ -134,7 +135,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 }
 
                 else {
-                    Toast.makeText(getApplicationContext(), "You must login first", Toast.LENGTH_LONG).show();
                     break;
                 }
         }
@@ -179,43 +179,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         }
                     }
                 });
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,email,first_name,last_name,gender");
-        request.setParameters(parameters);
-        request.executeAsync();
+
     }
 
     public String getName(){
         return Name;
     }
-    public void onResume(){
-        super.onResume();
-        if(WXEntryActivity.token != null){
-            Toast.makeText(this, "Token: " + WXEntryActivity.token, Toast.LENGTH_LONG).show();
-            WXEntryActivity.token = null;
-        }
-    }
 
-    /**
-     * Register first. This notifies WeChat about your application.
-     * @param view
-     */
-    public void onClickRegisterButton(View view) {
-        boolean success = api.registerApp(WXEntryActivity.API_ID);
-        Toast.makeText(this, "Registration Success: " + success, Toast.LENGTH_LONG).show();
-    }
 
-    /**
-     * Send an authorization request to WeChat. If successful, you will be moved to the WeChat
-     * app and you should see the application details you registered through the portal. When
-     * you grant access, WeChat should close and sent a response to WXEntryActivity.
-     * @param view
-     */
-    public void onClickLoginButton(View view) {
-        SendAuth.Req req = new SendAuth.Req();
-        req.scope = "snsapi_userinfo";
-        req.state = "none";
-        api.sendReq(req);
-    }
+
 
 }

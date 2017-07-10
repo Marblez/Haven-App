@@ -2,6 +2,9 @@ package orihd.orihd;
 
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Matthew on 7/10/2017.
@@ -16,9 +19,11 @@ public class SpinnerActivity extends customize implements AdapterView.OnItemSele
         switch(pos){
             case 0:
                 FragmentTab1.tagval = 1;
+
                 break;
             case 1:
                 FragmentTab1.tagval = 2;
+                Toast.makeText(getApplicationContext(), "Tagval is 2", Toast.LENGTH_LONG).show();
                 break;
             case 2:
                 FragmentTab1.tagval = 3;
@@ -32,7 +37,7 @@ public class SpinnerActivity extends customize implements AdapterView.OnItemSele
             case 5:
                 FragmentTab1.tagval = 6;
                 break;
-            
+
         }
     }
 

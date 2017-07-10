@@ -1,5 +1,6 @@
 package orihd.orihd;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import java.net.URL;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -26,11 +28,16 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 
 public class FragmentTab1 extends Fragment {
     private Handler handler = new Handler();
-    public static int tagval = 1;
-    public static int picval = 1;
+    public static int tagval;
+    public static int picval;
+    public static String globaltext;
+    public static ImageView globalimage;
+
     TextView nametext;
 
     public FragmentTab1() throws IOException {
@@ -44,46 +51,22 @@ public class FragmentTab1 extends Fragment {
         TextView change = (TextView) rootview.findViewById(R.id.NameText);
         TextView tagtext = (TextView) rootview.findViewById(R.id.textView2);
         ImageView custpic = (ImageView) rootview.findViewById(R.id.imageView3);
-        final ImageView pic = (ImageView) rootview.findViewById(R.id.imageView3);
         change.setText(fullname);
         //pic.setImageBitmap(mIcon);
 
-        switch(tagval){
-            case 1:
-                tagtext.setText("Working Class");
-                break;
-            case 2:
-                tagtext.setText("Professional Athlete");
-                break;
-            case 3:
-                tagtext.setText("Outdoor Hobbyist");
-                break;
-            case 4:
-                tagtext.setText("Health Junkie");
-                break;
-            case 5:
-                tagtext.setText("Rehabilitation Patient");
-                break;
-            case 6:
-                tagtext.setText("Casual Athlete");
-                break;
+        if(globaltext!= null) {
+            tagtext.setText(globaltext);
+        }
+        else{
+            tagtext.setText("Working Class");
         }
 
-        switch(picval){
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
+        if(globalimage != null){
+            custpic.setImageResource(picval);
         }
-
+        else{
+            custpic.setImageResource(R.drawable.emptyface);
+        }
     return rootview;
     }
 

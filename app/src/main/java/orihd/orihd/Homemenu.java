@@ -67,10 +67,10 @@ public class Homemenu extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
         int[] imageResId = {
-                R.drawable.homeicon,
-                R.drawable.community,
-                R.drawable.guidanceicon,
-                R.drawable.settingsicon};
+                R.drawable.clean,
+                R.drawable.clean,
+                R.drawable.clean,
+                R.drawable.clean};
 
         for (int i = 0; i < imageResId.length; i++) {
             tabLayout.getTabAt(i).setIcon(imageResId[i]);
@@ -80,8 +80,8 @@ public class Homemenu extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent cust = new Intent(Homemenu.this, customize.class);
+                Homemenu.this.startActivity(cust);
             }
         });
 
