@@ -31,20 +31,6 @@ public class customize extends AppCompatActivity implements AdapterView.OnItemSe
         Button save = (Button) findViewById(R.id.button4);
         save.setOnClickListener(this);
 
-        ImageButton first = (ImageButton) findViewById(R.id.imageButton);
-        ImageButton second = (ImageButton) findViewById(R.id.imageButton2);
-        ImageButton third = (ImageButton) findViewById(R.id.imageButton3);
-        ImageButton fourth = (ImageButton) findViewById(R.id.imageButton4);
-        ImageButton five = (ImageButton) findViewById(R.id.imageButton5);
-        ImageButton six = (ImageButton) findViewById(R.id.imageButton6);
-
-        first.setOnClickListener(this);
-        second.setOnClickListener(this);
-        third.setOnClickListener(this);
-        fourth.setOnClickListener(this);
-        five.setOnClickListener(this);
-        six.setOnClickListener(this);
-
 
     }
 
@@ -69,24 +55,7 @@ public class customize extends AppCompatActivity implements AdapterView.OnItemSe
                 Intent registerIntent1234 = new Intent(customize.this, Login.class);
                 customize.this.startActivity(registerIntent1234);}
                 break;
-            case R.id.imageButton:
-                FragmentTab1.globalimage.setImageResource(R.drawable.emptyface);
-                break;
-            case R.id.imageButton2:
-                FragmentTab1.globalimage.setImageResource(R.drawable.chicken);
-                break;
-            case R.id.imageButton3:
-                FragmentTab1.globalimage.setImageResource(R.drawable.emptyface2);
-                break;
-            case R.id.imageButton4:
-                FragmentTab1.globalimage.setImageResource(R.drawable.mario);
-                break;
-            case R.id.imageButton5:
-                FragmentTab1.globalimage.setImageResource(R.drawable.jesus);
-                break;
-            case R.id.imageButton6:
-                FragmentTab1.globalimage.setImageResource(R.drawable.troll);
-                break;
+
 
         }
     }
