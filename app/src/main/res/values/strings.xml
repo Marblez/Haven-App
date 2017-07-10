@@ -49,6 +49,15 @@
         <item>-1</item>
     </string-array>
 
+    <string-array name="personal_tags">
+        <item>Working Class</item>
+        <item>Professional Athlete</item>
+        <item>Outdoor Hobbyist</item>
+        <item>Health Junkie</item>
+        <item>Rehabilitation Patient</item>
+        <item>Casual Athlete</item>
+    </string-array>
+
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
 

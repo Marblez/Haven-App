@@ -29,6 +29,7 @@
         android:layout_height="80dp"
         app:srcCompat="@drawable/emptyface"
         android:id="@+id/imageView3"
+        android:scaleType="fitXY"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -140,7 +141,7 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="Professional Athlete"
+        android:text="Working Class"
         android:layout_width="wrap_content"
         android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
         android:textSize="18dp"

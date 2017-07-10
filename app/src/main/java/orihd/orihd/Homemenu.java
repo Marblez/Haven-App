@@ -94,6 +94,7 @@ public class Homemenu extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_homemenu, menu);
+
         return true;
     }
 
@@ -170,10 +171,10 @@ public class Homemenu extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 return tab1;
-                case 1:
-                    FragmentTab1 tab2 = null;
+                case 3:
+                    Settings tab2 = null;
                     try {
-                        tab2 = new FragmentTab1();
+                        tab2 = new Settings();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
