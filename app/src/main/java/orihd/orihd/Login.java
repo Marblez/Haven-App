@@ -135,10 +135,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
 
             case R.id.button:
-                AccessToken token;
-                token = AccessToken.getCurrentAccessToken();
+                AccessToken token2;
+                token2 = AccessToken.getCurrentAccessToken();
 
-                if (token != null) {
+                if (token2 != null) {
                     //Means user is logged in
                     Intent registerIntent12 = new Intent(Login.this, Homemenu.class);
                     Login.this.startActivity(registerIntent12);

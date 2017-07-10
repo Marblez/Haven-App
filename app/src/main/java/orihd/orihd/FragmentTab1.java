@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.Profile;
+import com.facebook.login.widget.ProfilePictureView;
 
 import org.json.JSONObject;
 
@@ -37,7 +39,7 @@ public class FragmentTab1 extends Fragment {
     public static int picval;
     public static String globaltext;
     public static ImageView globalimage;
-
+    ProfilePictureView prof;
     TextView nametext;
 
     public FragmentTab1() throws IOException {
@@ -52,6 +54,27 @@ public class FragmentTab1 extends Fragment {
         TextView tagtext = (TextView) rootview.findViewById(R.id.textView2);
         ImageView custpic = (ImageView) rootview.findViewById(R.id.imageView3);
         change.setText(fullname);
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
+        if (SDK_INT > 8)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            URL img_value = null;
+            try {
+                img_value = new URL("https://graph.facebook.com/" + facebook_id + "/picture?type=large");
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            Bitmap mIcon = null;
+            try {
+                mIcon = BitmapFactory.decodeStream(img_value.openConnection().getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            custpic.setImageBitmap(mIcon);
+
+        }
         //pic.setImageBitmap(mIcon);
 
         if(globaltext!= null) {
@@ -61,12 +84,7 @@ public class FragmentTab1 extends Fragment {
             tagtext.setText("Working Class");
         }
 
-        if(globalimage != null){
-            custpic.setImageResource(picval);
-        }
-        else{
-            custpic.setImageResource(R.drawable.emptyface);
-        }
+
     return rootview;
     }
 
@@ -76,8 +94,8 @@ public class FragmentTab1 extends Fragment {
     String fullname = firstName + " " + lastName;
     String facebook_id = profile.getId();
 
-    URL img_value = new URL("https://graph.facebook.com/" + facebook_id + "/picture?type=large");
-    //Bitmap mIcon = BitmapFactory.decodeStream(img_value.openConnection().getInputStream());
+
+
 
 
 

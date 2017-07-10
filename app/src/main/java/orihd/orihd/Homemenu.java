@@ -68,7 +68,7 @@ public class Homemenu extends AppCompatActivity {
 
         int[] imageResId = {
                 R.drawable.newhome,
-                R.drawable.clean,
+                R.drawable.newcom,
                 R.drawable.clean,
                 R.drawable.seticon};
 
