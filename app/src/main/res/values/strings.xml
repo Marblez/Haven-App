@@ -19,7 +19,7 @@
     <string name="Fragment3">This is Fragment 3</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_dashboard">Dashboard</string>
-    <string name="action_settings">LogOut</string>
+    <string name="action_settings">Back to Home</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_homemenu">OriHD</string>
     <string name="title_activity_settings_page">Settings</string>

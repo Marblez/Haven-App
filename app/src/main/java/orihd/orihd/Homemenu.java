@@ -67,10 +67,10 @@ public class Homemenu extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
         int[] imageResId = {
+                R.drawable.newhome,
                 R.drawable.clean,
                 R.drawable.clean,
-                R.drawable.clean,
-                R.drawable.clean};
+                R.drawable.seticon};
 
         for (int i = 0; i < imageResId.length; i++) {
             tabLayout.getTabAt(i).setIcon(imageResId[i]);

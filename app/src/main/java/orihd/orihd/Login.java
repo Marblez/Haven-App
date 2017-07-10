@@ -118,8 +118,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
 
             case R.id.button3:
-                Intent registerIntent1234 = new Intent(Login.this, Homemenu.class);
-                Login.this.startActivity(registerIntent1234);
+                AccessToken token;
+                token = AccessToken.getCurrentAccessToken();
+
+                if (token != null) {
+                    //Means user is logged in
+                    Intent registerIntent1234 = new Intent(Login.this, Homemenu.class);
+                    Login.this.startActivity(registerIntent1234);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Please Login First", Toast.LENGTH_SHORT).show();
+                    break;
+                }
 
                 break;
 
@@ -130,7 +140,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                 if (token != null) {
                     //Means user is logged in
-                    Intent registerIntent12 = new Intent(Login.this, Home.class);
+                    Intent registerIntent12 = new Intent(Login.this, Homemenu.class);
                     Login.this.startActivity(registerIntent12);
                 }
 
