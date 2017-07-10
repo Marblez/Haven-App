@@ -164,12 +164,20 @@ public class Homemenu extends AppCompatActivity {
             switch(position){
                 case 0:
                     FragmentTab1 tab1 = null;
+                try {
+                    tab1 = new FragmentTab1();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return tab1;
+                case 1:
+                    FragmentTab1 tab2 = null;
                     try {
-                        tab1 = new FragmentTab1();
+                        tab2 = new FragmentTab1();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    return tab1;
+                    return tab2;
             }
             return PlaceholderFragment.newInstance(position + 1);
         }
