@@ -20,6 +20,7 @@ public class customize extends AppCompatActivity implements AdapterView.OnItemSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customize);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        
         EditText newtag = (EditText) findViewById(R.id.editText);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -34,9 +35,18 @@ public class customize extends AppCompatActivity implements AdapterView.OnItemSe
 
     }
 
+    public String FindLabel(){
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        String text = spinner.getSelectedItem().toString();
+        return text;
+    }
+
     public String FindTag(){
         EditText newtag = (EditText) findViewById(R.id.editText);
         String TagInfo = newtag.getText().toString();
+        if(TagInfo==null || TagInfo == "" || TagInfo == " " ||TagInfo.length() <= 1){
+            return null;
+        }
         return TagInfo;
     }
 
@@ -46,25 +56,29 @@ public class customize extends AppCompatActivity implements AdapterView.OnItemSe
 
             case R.id.button4:
                 String TagInfo = FindTag();
-                if(TagInfo != null){
-                    FragmentTab1.globaltext = TagInfo;
+                if(TagInfo == null){
+                    String righttag = FindLabel();
+                    FragmentTab1.globaltext = righttag;
                     Intent registerIntent1234 = new Intent(customize.this, Login.class);
                     customize.this.startActivity(registerIntent1234);
                 }
                 else{
+                FragmentTab1.globaltext = TagInfo;
                 Intent registerIntent1234 = new Intent(customize.this, Login.class);
                 customize.this.startActivity(registerIntent1234);}
                 break;
 
 
+
         }
     }
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
         String item = parent.getItemAtPosition(position).toString();
-
 
         switch (position) {
             case 0:
