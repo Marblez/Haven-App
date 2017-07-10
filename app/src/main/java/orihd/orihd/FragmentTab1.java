@@ -3,6 +3,7 @@ package orihd.orihd;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -15,6 +16,7 @@ import android.support.v4.app.Fragment;
 import java.net.MalformedURLException;
 import java.net.URL;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.os.Handler;
 import android.widget.Toast;
@@ -84,7 +86,14 @@ public class FragmentTab1 extends Fragment {
             tagtext.setText("Working Class");
         }
 
-
+        ProgressBar progressBar1 = (ProgressBar) rootview.findViewById(R.id.progressBar4);
+        ProgressBar progressBar2 = (ProgressBar) rootview.findViewById(R.id.progressBar3);
+        ProgressBar progressBar3 = (ProgressBar) rootview.findViewById(R.id.progressBarFilter);
+        ProgressBar progressBar4 = (ProgressBar) rootview.findViewById(R.id.progressBar);
+        progressBar1.getIndeterminateDrawable().setColorFilter(Color.GREEN, android.graphics.PorterDuff.Mode.MULTIPLY);
+        progressBar3.getIndeterminateDrawable().setColorFilter(Color.YELLOW, android.graphics.PorterDuff.Mode.MULTIPLY);
+        progressBar4.getIndeterminateDrawable().setColorFilter(Color.GRAY, android.graphics.PorterDuff.Mode.MULTIPLY);
+        progressBar2.getIndeterminateDrawable().setColorFilter(Color.CYAN, android.graphics.PorterDuff.Mode.MULTIPLY);
     return rootview;
     }
 
