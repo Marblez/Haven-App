@@ -78,7 +78,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         Profile profile = Profile.getCurrentProfile().getCurrentProfile();
 
-
+       
 
 
 
@@ -118,6 +118,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event)
