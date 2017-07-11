@@ -1,5 +1,6 @@
 package orihd.orihd;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -34,7 +36,7 @@ import java.io.IOException;
 
 
 
-public class Settings extends Fragment {
+public class Settings extends Fragment implements View.OnClickListener {
     public static int notifperm = 1;
 
 
@@ -60,6 +62,8 @@ public class Settings extends Fragment {
             }
         });
 
+        ImageButton orihd = (ImageButton) rootview.findViewById(R.id.imageButton2);
+        orihd.setOnClickListener(this);
 
         return rootview;
 
@@ -78,4 +82,15 @@ public class Settings extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.imageButton2:
+                Uri uri = Uri.parse("https:www.orihd.com");
+                Intent intent= new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+
+                break;
+        }
+    }
 }
