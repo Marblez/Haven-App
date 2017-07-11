@@ -129,7 +129,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 {
                     AccessToken token;
                     token = AccessToken.getCurrentAccessToken();
-                    
+
                     if (token != null) {
                         //Means user is logged in
                         Intent registerIntent1234 = new Intent(Login.this, Homemenu.class);

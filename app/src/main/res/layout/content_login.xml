@@ -16,8 +16,10 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/orihd"
+        app:srcCompat="@drawable/newori"
+        
         android:id="@+id/imageView"
+        android:background="@null"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp" />
@@ -28,15 +30,6 @@
         android:id="@+id/info"
         android:textSize="18sp"
         />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/cooltext"
-        android:id="@+id/imageView2"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
@@ -50,10 +43,10 @@
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:textAlignment="center"
-        android:layout_marginTop="63dp"
         android:id="@+id/button3"
-        android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/login_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="66dp" />
 
 
 </RelativeLayout>
