@@ -1,5 +1,6 @@
 package orihd.orihd;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,14 +60,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.content_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         callbackManager = CallbackManager.Factory.create();
         setSupportActionBar(toolbar);
 
-        // Layout setup
+
+
+
 
         AccessToken token;
         token = AccessToken.getCurrentAccessToken();
@@ -81,8 +87,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         loginButton = (LoginButton)findViewById(R.id.login_button);
 
 
-        mypet = (Button)findViewById(R.id.button3);
-        mypet.setOnClickListener(this);
+
 
 
 
@@ -156,13 +161,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()) {
 
 
-            case R.id.button3:
-                AccessToken token;
-                token = AccessToken.getCurrentAccessToken();
-
-
-
-                break;
 
 
             case R.id.button:
