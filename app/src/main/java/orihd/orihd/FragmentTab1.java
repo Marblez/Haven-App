@@ -1,5 +1,8 @@
 package orihd.orihd;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothHeadset;
+import android.bluetooth.BluetoothProfile;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -50,8 +53,22 @@ public class FragmentTab1 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootview = inflater.inflate(R.layout.activity_fragment_tab1,container,false);
+     // BLUETOOTH IMPLEMENTATION WITH HARDWARE
 
+
+
+
+
+
+
+
+
+
+
+
+
+        // ONCREATE VIEW AND SETUP
+        View rootview = inflater.inflate(R.layout.activity_fragment_tab1,container,false);
         TextView change = (TextView) rootview.findViewById(R.id.NameText);
         TextView tagtext = (TextView) rootview.findViewById(R.id.textView2);
         ImageView custpic = (ImageView) rootview.findViewById(R.id.imageView3);
@@ -85,6 +102,39 @@ public class FragmentTab1 extends Fragment {
         else{
             tagtext.setText("Working Class");
         }
+
+        // SETTING PROGRESS-BAR STATUS AND NUMBERS
+
+        final ProgressBar unfilteredair = (ProgressBar) rootview.findViewById(R.id.progressBar);
+        final ProgressBar filteredair = (ProgressBar) rootview.findViewById(R.id.progressBar2);
+        final ProgressBar so2 = (ProgressBar) rootview.findViewById(R.id.progressBarFilter);
+        final ProgressBar no2 = (ProgressBar) rootview.findViewById(R.id.progressBar3);
+        final ProgressBar filterstate = (ProgressBar) rootview.findViewById(R.id.progressBarBattery);
+        final ProgressBar battery = (ProgressBar) rootview.findViewById(R.id.progressBar4);
+
+        final TextView unfilteredairtext = (TextView) rootview.findViewById(R.id.textView5);
+        final TextView filteredtext = (TextView) rootview.findViewById(R.id.textView3);
+        final TextView so2text = (TextView) rootview.findViewById(R.id.txtview);
+        final TextView no2text = (TextView) rootview.findViewById(R.id.textView12);
+        final TextView filterstatetext = (TextView) rootview.findViewById(R.id.textView13);
+        final TextView batterytext = (TextView) rootview.findViewById(R.id.txtview5);
+        handler.post(new Runnable() {
+            public void run() {
+                // Particles range from 0 ~ 1 billion
+               // unfilteredair.setProgress(progressStatus);
+               // unfilteredairtext.setText(progressStatus + " PPB");
+            }
+        });
+
+
+
+
+
+
+
+
+
+
 
     return rootview;
     }
