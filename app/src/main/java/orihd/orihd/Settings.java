@@ -36,7 +36,7 @@ import java.io.IOException;
 
 
 
-public class Settings extends Fragment implements View.OnClickListener {
+public class Settings extends Fragment{
     public static int notifperm = 1;
 
 
@@ -62,8 +62,7 @@ public class Settings extends Fragment implements View.OnClickListener {
             }
         });
 
-        ImageButton orihd = (ImageButton) rootview.findViewById(R.id.imageButton2);
-        orihd.setOnClickListener(this);
+
 
         return rootview;
 
@@ -82,15 +81,6 @@ public class Settings extends Fragment implements View.OnClickListener {
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.imageButton2:
-                Uri uri = Uri.parse("https:www.orihd.com");
-                Intent intent= new Intent(Intent.ACTION_VIEW,uri);
-                startActivity(intent);
 
-                break;
-        }
-    }
+
 }

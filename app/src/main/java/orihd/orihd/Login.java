@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -52,6 +53,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     Button mypet;
     Button guidance;
     private IWXAPI api;
+    private float x1,x2;
+    static final int MIN_DISTANCE = 150;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +93,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Intent registerIntent2 = new Intent(Login.this, Home.class);
+                Intent registerIntent2 = new Intent(Login.this, Homemenu.class);
                 Login.this.startActivity(registerIntent2);
             }
 
@@ -111,6 +114,42 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        switch(event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                float deltaX = x2 - x1;
+                if (deltaX > MIN_DISTANCE)
+                {
+                    AccessToken token;
+                    token = AccessToken.getCurrentAccessToken();
+                    
+                    if (token != null) {
+                        //Means user is logged in
+                        Intent registerIntent1234 = new Intent(Login.this, Homemenu.class);
+                        Login.this.startActivity(registerIntent1234);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Please Login First", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
+
+                }
+                else
+                {
+                   //NOTHING
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
 
     @Override
     public void onClick(View v) {
@@ -121,15 +160,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 AccessToken token;
                 token = AccessToken.getCurrentAccessToken();
 
-                if (token != null) {
-                    //Means user is logged in
-                    Intent registerIntent1234 = new Intent(Login.this, Homemenu.class);
-                    Login.this.startActivity(registerIntent1234);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Please Login First", Toast.LENGTH_SHORT).show();
-                    break;
-                }
+
 
                 break;
 
