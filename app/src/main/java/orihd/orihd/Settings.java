@@ -38,7 +38,8 @@ import java.io.IOException;
 
 public class Settings extends Fragment{
     public static int notifperm = 1;
-
+    public static int updateperm = 1;
+    public static int locationperm = 1;
 
     public Settings() throws IOException {
     }
@@ -48,6 +49,8 @@ public class Settings extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootview = inflater.inflate(R.layout.activity_settings,container,false);
         final Switch notifications = (Switch) rootview.findViewById(R.id.switch2);
+        final Switch updates= (Switch) rootview.findViewById(R.id.switch4);
+        final Switch location = (Switch) rootview.findViewById(R.id.switch5);
 
         notifications.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -62,6 +65,31 @@ public class Settings extends Fragment{
             }
         });
 
+        updates.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (updates.isChecked()) {
+                    TurnOnUpdates();
+                    Toast.makeText(rootview.getContext(), "Live Updates On", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    TurnOffUpdates();
+                    Toast.makeText(rootview.getContext(), "Live Updates Off", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        location.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (location.isChecked()) {
+                    TurnOnLocation();
+                    Toast.makeText(rootview.getContext(), "Location On", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    TurnOffLocation();
+                    Toast.makeText(rootview.getContext(), "Location Off", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
         return rootview;
@@ -77,9 +105,35 @@ public class Settings extends Fragment{
     }
 
     public void TurnOffNotifications(){
+
         notifperm = 0;
     }
 
+    public int UpdateStatus(){
+        return updateperm;
+    }
+
+    public void TurnOnUpdates(){
+        updateperm = 1;
+    }
+
+    public void TurnOffUpdates(){
+
+        updateperm = 0;
+    }
+
+    public int LocationStatus(){
+        return locationperm;
+    }
+
+    public void TurnOnLocation(){
+        locationperm = 1;
+    }
+
+    public void TurnOffLocation(){
+
+        locationperm = 0;
+    }
 
 
 
