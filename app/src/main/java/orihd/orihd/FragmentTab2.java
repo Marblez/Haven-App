@@ -35,23 +35,20 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
- = new TrackGPS();
+
         return rootView;
     }
 
 
-
     @Override
-    public void onMapReady(GoogleTTrack Map googleMap) {
-        TrackGPS NewGPS = new TrackGPS();
+    public void onMapReady(GoogleMap googleMap) {
+        TrackGPS NewGPS = new TrackGPS(getContext());
         longitudev = NewGPS.getLongitude();
         latitudev = NewGPS.getLatitude();
-        LatLng current = new LatLng(latitudev,longitudev);
-        LatLng sydney = new LatLng(-33.852, 151.211);
+        LatLng current = new LatLng(latitudev, longitudev);
+
         googleMap.addMarker(new MarkerOptions().position(current)
                 .title("Marker in Sydney"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(current));
     }
-
-
 }
