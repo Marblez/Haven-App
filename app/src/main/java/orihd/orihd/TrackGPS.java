@@ -94,7 +94,7 @@ public class TrackGPS extends Service implements LocationListener {
             }
             // if GPS Enabled get lat/long using GPS Services
             if (checkGPS) {
-                
+
                 if (loc == null) {
                     try {
                         locationManager.requestLocationUpdates(

@@ -49,7 +49,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         LatLng current = new LatLng(latitudev, longitudev);
 
         googleMap.addMarker(new MarkerOptions().position(current)
-                .title("Marker in Sydney"));
+                .title("Current Location"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(current));
     }
 
