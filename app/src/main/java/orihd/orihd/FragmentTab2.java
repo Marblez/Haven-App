@@ -1,6 +1,7 @@
 package orihd.orihd;
 
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -17,6 +18,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -48,9 +51,15 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         latitudev = NewGPS.getLatitude();
         LatLng current = new LatLng(latitudev, longitudev);
 
-        googleMap.addMarker(new MarkerOptions().position(current)
+        googleMap.addMarker(new MarkerOptions().position(current).icon(getMarkerIcon("#00f921"))
                 .title("Current Location"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(current));
+    }
+
+    public BitmapDescriptor getMarkerIcon(String color) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(Color.parseColor(color), hsv);
+        return BitmapDescriptorFactory.defaultMarker(hsv[0]);
     }
 
     @Override
