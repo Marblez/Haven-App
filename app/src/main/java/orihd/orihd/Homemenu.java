@@ -179,6 +179,7 @@ public class Homemenu extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     return tab2;
+
                 case 1:
                     FragmentTab2 tab3 = null;
                     tab3 = new FragmentTab2();
