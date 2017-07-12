@@ -22,12 +22,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import orihd.orihd.Manifest.permission;
 
 public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
-
+    public static FragmentTab2 newInstance() {
+        FragmentTab2 fragment = new FragmentTab2();
+        return fragment;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_fragment_tab2, container, false);
-        SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager()
+        SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         return rootView;
@@ -43,5 +46,5 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
-    
+
 }
