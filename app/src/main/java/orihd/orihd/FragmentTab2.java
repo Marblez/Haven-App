@@ -22,6 +22,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import orihd.orihd.Manifest.permission;
 
 public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
+    public double longitudev;
+    public double latitudev;
     public static FragmentTab2 newInstance() {
         FragmentTab2 fragment = new FragmentTab2();
         return fragment;
@@ -33,17 +35,22 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+ = new TrackGPS();
         return rootView;
     }
 
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
 
+    @Override
+    public void onMapReady(GoogleTTrack Map googleMap) {
+        TrackGPS NewGPS = new TrackGPS();
+        longitudev = NewGPS.getLongitude();
+        latitudev = NewGPS.getLatitude();
+        LatLng current = new LatLng(latitudev,longitudev);
         LatLng sydney = new LatLng(-33.852, 151.211);
-        googleMap.addMarker(new MarkerOptions().position(sydney)
+        googleMap.addMarker(new MarkerOptions().position(current)
                 .title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(current));
     }
 
 
