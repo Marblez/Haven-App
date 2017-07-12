@@ -29,6 +29,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:design:25.1.0'
     compile 'com.facebook.android:facebook-android-sdk:4.0.0'
+    compile 'com.google.android.gms:play-services:11.0.2'
     compile 'com.android.support:support-v4:25.1.0'
     compile 'com.android.support:support-vector-drawable:25.1.0'
     testCompile 'junit:junit:4.12'
