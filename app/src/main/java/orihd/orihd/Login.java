@@ -140,6 +140,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         //Means user is logged in
                         Intent registerIntent1234 = new Intent(Login.this, Homemenu.class);
                         Login.this.startActivity(registerIntent1234);
+                        finish();
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "Please Login First", Toast.LENGTH_SHORT).show();
