@@ -227,6 +227,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         return Name;
     }
 
+    @Override
+    public void onBackPressed() {
+      // Return home button
+        Intent i = new Intent(Intent.ACTION_MAIN);
+        i.addCategory(Intent.CATEGORY_HOME);
+        startActivity(i);
+        super.onBackPressed();
+    }
+
 
 
 

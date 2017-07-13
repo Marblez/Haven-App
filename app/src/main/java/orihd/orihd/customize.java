@@ -61,11 +61,14 @@ public class customize extends AppCompatActivity implements AdapterView.OnItemSe
                     FragmentTab1.globaltext = righttag;
                     Intent registerIntent1234 = new Intent(customize.this, Login.class);
                     customize.this.startActivity(registerIntent1234);
+                    finish();
                 }
                 else{
                 FragmentTab1.globaltext = TagInfo;
                 Intent registerIntent1234 = new Intent(customize.this, Login.class);
-                customize.this.startActivity(registerIntent1234);}
+                customize.this.startActivity(registerIntent1234);
+                finish();
+                }
                 break;
 
 
