@@ -1,12 +1,16 @@
 package orihd.orihd;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +32,7 @@ import orihd.orihd.Manifest.permission;
 public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     public double longitudev;
     public double latitudev;
+    private final static String TAG_FRAGMENT = "TAG_FRAGMENT";
     public static FragmentTab2 newInstance() {
         FragmentTab2 fragment = new FragmentTab2();
         return fragment;
@@ -39,6 +44,8 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
 
         return rootView;
     }
@@ -70,4 +77,16 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         if (mapFragment != null)
             getFragmentManager().beginTransaction().remove(mapFragment).commit();
     }
+
+    public void gohome(){
+        Intent i = new Intent(Intent.ACTION_MAIN);
+        i.addCategory(Intent.CATEGORY_HOME);
+        startActivity(i);
+    }
+
+
+    public void onBackPressed() {
+        gohome();
+    }
+
 }

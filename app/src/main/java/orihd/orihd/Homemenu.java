@@ -25,7 +25,7 @@ import android.widget.TextView;
 import java.io.IOException;
 
 public class Homemenu extends AppCompatActivity {
-
+    protected OnBackPressedListener onBackPressedListener;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -48,7 +48,7 @@ public class Homemenu extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,       WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         this.setContentView(R.layout.activity_homemenu);
         setContentView(R.layout.activity_homemenu);
@@ -84,7 +84,6 @@ public class Homemenu extends AppCompatActivity {
                 Homemenu.this.startActivity(cust);
             }
         });
-
 
 
     }
@@ -162,15 +161,15 @@ public class Homemenu extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            switch(position){
+            switch (position) {
                 case 0:
                     FragmentTab1 tab1 = null;
-                try {
-                    tab1 = new FragmentTab1();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return tab1;
+                    try {
+                        tab1 = new FragmentTab1();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return tab1;
                 case 3:
                     Settings tab2 = null;
                     try {
@@ -197,10 +196,9 @@ public class Homemenu extends AppCompatActivity {
         private int[] imageResId = {
                 R.drawable.feed,
                 R.drawable.clean,
-                R.drawable.feed };
+                R.drawable.feed};
 
-        
-        
+
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
@@ -220,7 +218,17 @@ public class Homemenu extends AppCompatActivity {
         }
 
 
+    }
 
+    public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener) {
+        this.onBackPressedListener = onBackPressedListener;
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (onBackPressedListener != null)
+            onBackPressedListener.doBack();
+        else
+            super.onBackPressed();
     }
 }
