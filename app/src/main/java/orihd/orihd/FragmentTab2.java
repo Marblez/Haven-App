@@ -27,6 +27,12 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.database.ValueEventListener;
 
 import orihd.orihd.Manifest.permission;
 
@@ -46,7 +52,25 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseRef = database.getReference("Location");
 
+        databaseRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Location post = dataSnapshot.getValue(Location.class);
+                String latitudeval = post.latitude;
+
+                Toast.makeText(getContext(), latitudeval, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
 
         return rootView;
     }
@@ -91,6 +115,16 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         startActivity(i);
     }
 
+    public static class Location {
+        String name;
+        String longitude;
+        String latitude;
+
+    }
 
 
-}
+    }
+
+
+
+
