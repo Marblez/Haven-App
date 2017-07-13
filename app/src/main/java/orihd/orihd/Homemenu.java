@@ -226,9 +226,9 @@ public class Homemenu extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (onBackPressedListener != null)
-            onBackPressedListener.doBack();
-        else
-            super.onBackPressed();
+        Intent i = new Intent(Intent.ACTION_MAIN);
+        i.addCategory(Intent.CATEGORY_HOME);
+        startActivity(i);
+        super.onBackPressed();
     }
 }

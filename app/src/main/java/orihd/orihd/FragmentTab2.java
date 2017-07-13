@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.Manifest;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -75,7 +76,13 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
         if (mapFragment != null)
-            getFragmentManager().beginTransaction().remove(mapFragment).commit();
+            try {
+                getFragmentManager().beginTransaction().remove(mapFragment).commit();
+            }
+            catch(java.lang.RuntimeException e){
+            gohome();
+        }
+
     }
 
     public void gohome(){
@@ -85,8 +92,5 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     }
 
 
-    public void onBackPressed() {
-        gohome();
-    }
 
 }
