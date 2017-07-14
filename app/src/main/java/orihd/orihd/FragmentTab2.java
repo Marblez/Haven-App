@@ -59,10 +59,17 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Location post = dataSnapshot.getValue(Location.class);
-                String latitudeval = post.latitude;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    for (DataSnapshot snapshot2 : snapshot.getChildren()) {
 
-                Toast.makeText(getContext(), latitudeval, Toast.LENGTH_SHORT).show();
+                            long datanum = snapshot.getChildrenCount();
+                            String stringval = snapshot2.getKey();
+                            Toast.makeText(getContext(), stringval, Toast.LENGTH_SHORT).show();
+
+
+                    }
+
+                }
             }
 
             @Override
@@ -116,7 +123,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     }
 
     public static class Location {
-        String name;
+        String aqi;
         String longitude;
         String latitude;
 
