@@ -39,6 +39,8 @@ import orihd.orihd.Manifest.permission;
 public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     public double longitudev;
     public double latitudev;
+    public static int value;
+    public static double[] arrayvalue;
     private final static String TAG_FRAGMENT = "TAG_FRAGMENT";
     public static FragmentTab2 newInstance() {
         FragmentTab2 fragment = new FragmentTab2();
@@ -59,14 +61,14 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                int count = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     for (DataSnapshot snapshot2 : snapshot.getChildren()) {
-
                             long datanum = snapshot.getChildrenCount();
-                            Long stringval = snapshot2.getValue(Long.class);
-                            String stringval2 = stringval.toString();
-                            Toast.makeText(getContext(), stringval2, Toast.LENGTH_SHORT).show();
-
+                            Double doubleval = snapshot2.getValue(Double.class);
+                            int datanum2 = (int) (long) datanum;
+                            value = datanum2;
+                            arrayvalue[count] = doubleval;
 
                     }
 
@@ -94,6 +96,44 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         googleMap.addMarker(new MarkerOptions().position(current).icon(getMarkerIcon("#00f921"))
                 .title("Current Location"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(current));
+
+        for(int x = 0; x <value; x+=3){
+            double aqitemp=0;
+            int aqitest = (int) aqitemp;
+            double lattest = 0;
+            double longtest = 0;
+            arrayvalue[x]=aqitest;
+            arrayvalue[x+1]=lattest;
+            arrayvalue[x+2]=longtest;
+            LatLng newlocation = new LatLng(lattest,longtest);
+            String color="";
+            switch(aqitest){
+                case 1:
+                    color = "#00f921";
+                    break;
+                case 2:
+                    color = "#e5e514";
+                    break;
+                case 3:
+                    color = "#ff9d00";
+                    break;
+                case 4:
+                    color = "#ff1500";
+                    break;
+                case 5:
+                    color = "#1b0289";
+                    break;
+                case 6:
+                    color = "#000000";
+                    break;
+                default:
+                    color = "#e5e514";
+                    break;
+            }
+            googleMap.addMarker(new MarkerOptions().position(newlocation).icon(getMarkerIcon(color))
+                    .title("Current Location"));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(newlocation));
+        }
     }
 
     public BitmapDescriptor getMarkerIcon(String color) {
