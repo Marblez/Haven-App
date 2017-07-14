@@ -63,8 +63,9 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                     for (DataSnapshot snapshot2 : snapshot.getChildren()) {
 
                             long datanum = snapshot.getChildrenCount();
-                            String stringval = snapshot2.getKey();
-                            Toast.makeText(getContext(), stringval, Toast.LENGTH_SHORT).show();
+                            Long stringval = snapshot2.getValue(Long.class);
+                            String stringval2 = stringval.toString();
+                            Toast.makeText(getContext(), stringval2, Toast.LENGTH_SHORT).show();
 
 
                     }
