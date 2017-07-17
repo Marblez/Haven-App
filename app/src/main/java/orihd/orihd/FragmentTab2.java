@@ -39,9 +39,9 @@ import orihd.orihd.Manifest.permission;
 public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     public double longitudev;
     public double latitudev;
-    public static int value;
-    public static double[] arrayvalue;
+    public static double testing;
     private final static String TAG_FRAGMENT = "TAG_FRAGMENT";
+    static double arrayvalue[] = new double[100];
     public static FragmentTab2 newInstance() {
         FragmentTab2 fragment = new FragmentTab2();
         return fragment;
@@ -54,7 +54,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference("Location");
 
         databaseRef.addValueEventListener(new ValueEventListener() {
@@ -64,11 +64,11 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                 int count = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     for (DataSnapshot snapshot2 : snapshot.getChildren()) {
-                            long datanum = snapshot.getChildrenCount();
-                            Double doubleval = snapshot2.getValue(Double.class);
-                            int datanum2 = (int) (long) datanum;
-                            value = datanum2;
-                            arrayvalue[count] = doubleval;
+
+                        arrayvalue = new double[100];
+                        Double doubleval = snapshot2.getValue(Double.class);
+                        arrayvalue[count] = doubleval;
+                        count++;
 
                     }
 
@@ -81,11 +81,40 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
             }
 
         });
+        */
 
         return rootView;
     }
 
 
+    public double[] returnarray(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseRef = database.getReference("Location");
+
+
+
+        databaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int count = 0;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    for (DataSnapshot snapshot2 : snapshot.getChildren()) {
+                        double doubleval = snapshot2.getValue(double.class);
+                        arrayvalue[count] = doubleval;
+                        count++;
+                    }
+                }
+
+
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return arrayvalue;
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         TrackGPS NewGPS = new TrackGPS(getContext());
@@ -97,16 +126,18 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                 .title("Current Location"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(current));
 
-        for(int x = 0; x <value; x+=3){
-            double aqitemp=0;
+
+        for(int x = 0; x <6; x+=3){
+            double aqitemp;
+            double lattest;
+            double longtest;
+            arrayvalue = returnarray();
+            aqitemp = arrayvalue[x];
             int aqitest = (int) aqitemp;
-            double lattest = 0;
-            double longtest = 0;
-            arrayvalue[x]=aqitest;
-            arrayvalue[x+1]=lattest;
-            arrayvalue[x+2]=longtest;
+            lattest = arrayvalue[x+1];
+            longtest = arrayvalue[x+2];
             LatLng newlocation = new LatLng(lattest,longtest);
-            String color="";
+            String color;
             switch(aqitest){
                 case 1:
                     color = "#00f921";
@@ -131,9 +162,11 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                     break;
             }
             googleMap.addMarker(new MarkerOptions().position(newlocation).icon(getMarkerIcon(color))
-                    .title("Current Location"));
+                    );
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(newlocation));
         }
+
+
     }
 
     public BitmapDescriptor getMarkerIcon(String color) {
