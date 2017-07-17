@@ -183,6 +183,10 @@ public class Homemenu extends AppCompatActivity {
                     FragmentTab2 tab3 = null;
                     tab3 = new FragmentTab2();
                     return tab3;
+                case 2:
+                    FragmentTab3 infotab = null;
+                    infotab = new FragmentTab3();
+                    return infotab;
             }
             return PlaceholderFragment.newInstance(position + 1);
         }
