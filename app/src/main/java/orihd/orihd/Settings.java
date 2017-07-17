@@ -37,9 +37,9 @@ import java.io.IOException;
 
 
 public class Settings extends Fragment{
-    public static int notifperm = 1;
-    public static int updateperm = 1;
-    public static int locationperm = 1;
+    public static int notifperm;
+    public static int updateperm;
+    public static int locationperm;
 
     public Settings() throws IOException {
     }
@@ -96,7 +96,7 @@ public class Settings extends Fragment{
 
     }
 
-    public int NotificationStatus(){
+    public static int NotificationStatus(){
         return notifperm;
     }
 
@@ -109,7 +109,7 @@ public class Settings extends Fragment{
         notifperm = 0;
     }
 
-    public int UpdateStatus(){
+    public static int UpdateStatus(){
         return updateperm;
     }
 
@@ -122,7 +122,7 @@ public class Settings extends Fragment{
         updateperm = 0;
     }
 
-    public int LocationStatus(){
+    public static int LocationStatus(){
         return locationperm;
     }
 

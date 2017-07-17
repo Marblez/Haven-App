@@ -90,13 +90,19 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         TrackGPS NewGPS = new TrackGPS(getContext());
-        longitudev = NewGPS.getLongitude();
-        latitudev = NewGPS.getLatitude();
-        LatLng current = new LatLng(latitudev, longitudev);
+        if(Settings.LocationStatus()== 1 ) {
+            longitudev = NewGPS.getLongitude();
+            latitudev = NewGPS.getLatitude();
+            LatLng current = new LatLng(latitudev, longitudev);
 
-        googleMap.addMarker(new MarkerOptions().position(current).icon(getMarkerIcon("#00f921"))
-                .title("Current Location"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(current));
+            googleMap.addMarker(new MarkerOptions().position(current).icon(getMarkerIcon("#00f921"))
+                    .title("Current Location"));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(current));
+        }
+        else{
+            Toast.makeText(getContext(), "Turn On Location Tracking", Toast.LENGTH_SHORT).show();
+
+        }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference("Location");

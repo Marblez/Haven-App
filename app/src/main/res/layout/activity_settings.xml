@@ -71,17 +71,6 @@ tools:context="orihd.orihd.Settings">
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <SeekBar
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
-        android:id="@+id/seekBar"
-        android:layout_below="@+id/switch5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text="Fan Speed"
         android:layout_width="wrap_content"
@@ -114,11 +103,32 @@ tools:context="orihd.orihd.Settings">
         android:id="@+id/textView19" />
 
     <TextView
-        android:text="50%"
+        android:text="50"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/seekBar"
         android:layout_centerHorizontal="true"
         android:id="@+id/textView20" />
+
+    <SeekBar
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="109dp"
+        android:id="@+id/seekBar"
+        android:layout_below="@+id/switch5"
+        android:layout_alignLeft="@+id/textView17"
+        android:layout_alignStart="@+id/textView17" />
+
+    <Switch
+       android:text="Air Filter                                                                                     "
+       android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
+       android:textSize="20dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="24dp"
+       android:id="@+id/switch3"
+        android:layout_below="@+id/switch5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
