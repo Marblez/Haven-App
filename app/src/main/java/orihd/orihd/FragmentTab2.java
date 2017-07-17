@@ -112,11 +112,11 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                         count++;
                     }
                 }
-                int arraysize = arrayvalue.length;
 
-                String testval = Integer.toString(arraysize);
-                Toast.makeText(getContext(), testval, Toast.LENGTH_SHORT).show();
-                for(int x = 0; x <11; x+=3){
+                //String testval = Integer.toString(count);
+                //Toast.makeText(getContext(), testval, Toast.LENGTH_SHORT).show();
+                int limit = count -1;
+                for(int x = 0; x <limit; x+=3){
                     double aqitemp;
                     double lattest;
                     double longtest;
@@ -144,7 +144,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                             color = "#1b0289";
                             break;
                         case 6:
-                            color = "#000000";
+                            color = "#4B0082";
                             break;
                         default:
                             color = "#e5e514";
