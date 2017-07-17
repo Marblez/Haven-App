@@ -71,4 +71,54 @@ tools:context="orihd.orihd.Settings">
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <SeekBar
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="61dp"
+        android:id="@+id/seekBar"
+        android:layout_below="@+id/switch5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Fan Speed"
+        android:layout_width="wrap_content"
+        android:textSize="20dp"
+        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/seekBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:id="@+id/textView15" />
+
+    <TextView
+        android:text="0%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView17"
+        android:layout_below="@+id/seekBar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
+
+    <TextView
+        android:text="100%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView17"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/textView19" />
+
+    <TextView
+        android:text="50%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBar"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView20" />
+
 </RelativeLayout>
