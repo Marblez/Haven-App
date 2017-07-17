@@ -11,20 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="orihd.orihd.Home">
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar3"
-        android:progressTint="@color/com_facebook_button_send_background_color"
-        android:max="100"
-        android:minHeight="50dp"
-        android:minWidth="130dp"
-        android:progress="63"
-        android:layout_below="@+id/progressBarFilter"
-        android:layout_alignLeft="@+id/progressBarFilter"
-        android:layout_alignStart="@+id/progressBarFilter" />
-
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -36,17 +22,6 @@
         android:layout_alignParentStart="true" />
 
 
-    <Switch
-        android:text="Air Filter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
-        android:textSize="15dp"
-        android:id="@+id/switch1"
-        android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2" />
-
     <TextSwitcher
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,20 +30,6 @@
         android:layout_toEndOf="@+id/textView3"
         android:layout_marginTop="20dp"
         android:id="@+id/textSwitcher" />
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar2"
-        android:max="100"
-        android:minHeight="50dp"
-        android:minWidth="130dp"
-        android:progress="30"
-        android:progressTint="@color/colorPrimary"
-        android:layout_below="@+id/progressBar"
-        android:layout_alignLeft="@+id/progressBar"
-        android:layout_alignStart="@+id/progressBar" />
 
     <TextView
         android:text="30%"
@@ -79,35 +40,6 @@
         android:layout_alignBottom="@+id/textView4"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="30%"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:id="@+id/textView5"
-        android:layout_above="@+id/progressBar2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="Unfiltered Air"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView6" />
-
-    <TextView
-        android:text="Filtered Air"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_marginTop="12dp"
-        android:layout_below="@+id/progressBar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 
     <TextView
@@ -131,59 +63,6 @@
         android:layout_alignLeft="@+id/NameText"
         android:layout_alignStart="@+id/NameText" />
 
-    <TextView
-        android:text="NO2 Quality"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView10"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="29dp"
-        android:id="@+id/textView11" />
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBarBattery"
-        android:max="100"
-        android:minHeight="50dp"
-        android:minWidth="130dp"
-        android:progress="63"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/progressBar3"
-        android:layout_alignLeft="@+id/progressBar3"
-        android:layout_alignStart="@+id/progressBar3" />
-
-
-    <TextView
-        android:text="User's Name"
-        android:textSize="28dp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
-        android:id="@+id/NameText"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/textView5"
-        android:layout_toStartOf="@+id/textView5"
-        android:layout_marginRight="38dp"
-        android:layout_marginEnd="38dp" />
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:id="@+id/progressBar"
-        android:progressTint="@color/gray"
-        android:max="100"
-        android:minHeight="50dp"
-        android:minWidth="130dp"
-        android:progress="30"
-        android:layout_below="@+id/switch1"
-        android:layout_alignRight="@+id/NameText"
-        android:layout_alignEnd="@+id/NameText" />
 
     <TextView
         android:text="30%"
@@ -194,6 +73,35 @@
         android:layout_alignBottom="@+id/textView11"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="45%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtview"
+        android:layout_alignBaseline="@+id/textView10"
+        android:layout_alignBottom="@+id/textView10"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Ambient air"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_marginBottom="16dp"
+        android:layout_alignBottom="@+id/progressBar2"
+        android:layout_alignLeft="@+id/textView10"
+        android:layout_alignStart="@+id/textView10" />
+
+    <TextView
+        android:text="Particulates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:layout_alignTop="@+id/textSwitcher"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
@@ -211,31 +119,37 @@
         android:layout_alignStart="@+id/progressBar2" />
 
     <TextView
-        android:text="SO2 Quality"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView10"
-        android:layout_alignBaseline="@+id/txtview"
-        android:layout_alignBottom="@+id/txtview"
-        android:layout_alignRight="@+id/textView11"
-        android:layout_alignEnd="@+id/textView11" />
-
-    <TextView
-        android:text="45%"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtview"
-        android:layout_alignTop="@+id/textSwitcher"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="Air Filter State"
+        android:text="Air Filter "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
-        android:layout_marginTop="13dp"
-        android:layout_alignTop="@+id/progressBarBattery"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/progressBar3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar4"
+        android:max="100"
+        android:minHeight="50dp"
+        android:minWidth="130dp"
+        android:progress="30"
+        android:progressTint="@color/green"
+        android:layout_below="@+id/progressBarBattery"
+        android:layout_alignLeft="@+id/progressBarBattery"
+        android:layout_alignStart="@+id/progressBarBattery"
+        android:layout_marginTop="14dp" />
+
+    <TextView
+        android:text="Battery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:layout_marginBottom="15dp"
+        android:layout_alignBottom="@+id/progressBar4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -253,23 +167,67 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar4"
+        android:id="@+id/progressBar2"
         android:max="100"
         android:minHeight="50dp"
         android:minWidth="130dp"
         android:progress="30"
-        android:progressTint="@color/green"
-        android:layout_below="@+id/progressBarBattery"
-        android:layout_alignLeft="@+id/progressBarBattery"
-        android:layout_alignStart="@+id/progressBarBattery" />
+        android:progressTint="@color/colorPrimary"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/imageView3"
+        android:layout_toRightOf="@+id/imageView3"
+        android:layout_toEndOf="@+id/imageView3"
+        android:layout_marginLeft="46dp"
+        android:layout_marginStart="46dp" />
 
-    <TextView
-        android:text="Battery Life"
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView8"
-        android:layout_marginTop="12dp"
-        android:layout_below="@+id/progressBarBattery"
+        android:id="@+id/progressBar3"
+        android:progressTint="@color/com_facebook_button_send_background_color"
+        android:max="100"
+        android:minHeight="50dp"
+        android:minWidth="130dp"
+        android:progress="63"
+        android:layout_below="@+id/progressBarFilter"
+        android:layout_alignLeft="@+id/progressBarFilter"
+        android:layout_alignStart="@+id/progressBarFilter" />
+
+    <TextView
+        android:text="Harmful Gas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/progressBarFilter"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text="User's Name"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
+        android:id="@+id/NameText"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/progressBar2"
+        android:layout_alignEnd="@+id/progressBar2" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBarBattery"
+        android:max="100"
+        android:minHeight="50dp"
+        android:minWidth="130dp"
+        android:progress="63"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/progressBar3"
+        android:layout_alignLeft="@+id/progressBar3"
+        android:layout_alignStart="@+id/progressBar3" />
+
 </RelativeLayout>
