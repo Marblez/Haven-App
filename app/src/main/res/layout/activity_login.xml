@@ -36,7 +36,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/swipe-07"
+        app:srcCompat="@drawable/swipe"
         android:id="@+id/imageView6" />
 
 
