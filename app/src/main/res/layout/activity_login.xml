@@ -30,6 +30,14 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
-    <include layout="@layout/content_login" />
+    <include layout="@layout/content_login"
+        android:id="@+id/include" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/swipe-07"
+        android:id="@+id/imageView6" />
+
 
 </android.support.design.widget.CoordinatorLayout>
