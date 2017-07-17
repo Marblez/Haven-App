@@ -87,11 +87,19 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     }
 
 
-    public double[] returnarray(){
+    @Override
+    public void onMapReady(final GoogleMap googleMap) {
+        TrackGPS NewGPS = new TrackGPS(getContext());
+        longitudev = NewGPS.getLongitude();
+        latitudev = NewGPS.getLatitude();
+        LatLng current = new LatLng(latitudev, longitudev);
+
+        googleMap.addMarker(new MarkerOptions().position(current).icon(getMarkerIcon("#00f921"))
+                .title("Current Location"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(current));
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference("Location");
-
-
 
         databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,34 +112,64 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                         count++;
                     }
                 }
+                int arraysize = arrayvalue.length;
 
+                String testval = Integer.toString(arraysize);
+                Toast.makeText(getContext(), testval, Toast.LENGTH_SHORT).show();
+                for(int x = 0; x <11; x+=3){
+                    double aqitemp;
+                    double lattest;
+                    double longtest;
 
+                    aqitemp = arrayvalue[x];
+                    int aqitest = (int) aqitemp;
+                    lattest = arrayvalue[x+1];
+                    longtest = arrayvalue[x+2];
+                    LatLng newlocation = new LatLng(lattest,longtest);
+                    String color;
+                    switch(aqitest){
+                        case 1:
+                            color = "#00f921";
+                            break;
+                        case 2:
+                            color = "#e5e514";
+                            break;
+                        case 3:
+                            color = "#ff9d00";
+                            break;
+                        case 4:
+                            color = "#ff1500";
+                            break;
+                        case 5:
+                            color = "#1b0289";
+                            break;
+                        case 6:
+                            color = "#000000";
+                            break;
+                        default:
+                            color = "#e5e514";
+                            break;
+
+                    }
+                    googleMap.addMarker(new MarkerOptions().position(newlocation).icon(getMarkerIcon(color))
+                    );
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(newlocation));
+                }
 
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-        return arrayvalue;
-    }
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        TrackGPS NewGPS = new TrackGPS(getContext());
-        longitudev = NewGPS.getLongitude();
-        latitudev = NewGPS.getLatitude();
-        LatLng current = new LatLng(latitudev, longitudev);
 
-        googleMap.addMarker(new MarkerOptions().position(current).icon(getMarkerIcon("#00f921"))
-                .title("Current Location"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(current));
-
-
+/*
         for(int x = 0; x <6; x+=3){
             double aqitemp;
             double lattest;
             double longtest;
-            arrayvalue = returnarray();
+
             aqitemp = arrayvalue[x];
             int aqitest = (int) aqitemp;
             lattest = arrayvalue[x+1];
@@ -160,11 +198,14 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                 default:
                     color = "#e5e514";
                     break;
+
             }
             googleMap.addMarker(new MarkerOptions().position(newlocation).icon(getMarkerIcon(color))
                     );
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(newlocation));
-        }
+            }
+            */
+
 
 
     }
