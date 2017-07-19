@@ -54,7 +54,7 @@ public class Activity_BTLE_Services extends AppCompatActivity implements Expanda
                 finish();
             }
 
-            mBTLE_Service.connect(address);
+            //mBTLE_Service.connect(address);
 
             // Automatically connects to the device upon successful start-up initialization.
 //            mBTLeService.connect(mBTLeDeviceAddress);

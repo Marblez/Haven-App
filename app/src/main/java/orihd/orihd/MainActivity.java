@@ -5,6 +5,8 @@ package orihd.orihd;
  */
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -16,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,8 +36,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button btn_Scan;
     public static String finalname;
+    private BluetoothAdapter mBluetoothAdapter;
     public static String finaladdress;
-
+    protected BluetoothManager mBluetoothManager;
+    private BluetoothGatt mBluetoothGatt;
     private BroadcastReceiver_BTState mBTStateUpdateReceiver;
     private Scanner_BTLE mBTLeScanner;
 
@@ -129,7 +134,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // do something with the text views and start the next activity.
 
         stopScan();
+        // Initiate BLE Connection
+        String address = mBTDevicesArrayList.get(position).getAddress();
+        //final BluetoothDevice device = mBTDevicesArrayList.get(position);
+        Service_BTLE_GATT serviceinstance = new Service_BTLE_GATT();
+        mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        boolean x = serviceinstance.connect(address,mBluetoothManager);
+        if(x==true){
+            Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
+        }
+        else if (x==false){
+            Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
+        }
 
+
+
+/*
         String name = mBTDevicesArrayList.get(position).getName();
         String address = mBTDevicesArrayList.get(position).getAddress();
 
@@ -138,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, Activity_BTLE_Services.class);
 
         startActivityForResult(intent, BTLE_SERVICES);
+        */
     }
     public String getfinalname(){
         return finalname;
@@ -145,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public String getfinaladdress(){
         return finaladdress;
     }
+
 
     @Override
     public void onClick(View v) {
