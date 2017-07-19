@@ -138,7 +138,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                     if (token != null) {
                         //Means user is logged in
-                        Intent registerIntent1234 = new Intent(Login.this, Homemenu.class);
+                        Intent registerIntent1234 = new Intent(Login.this, MainActivity.class);
                         Login.this.startActivity(registerIntent1234);
                         finish();
                     }

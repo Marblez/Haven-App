@@ -35,10 +35,10 @@ public class Utils {
 
         final IntentFilter intentFilter = new IntentFilter();
 
-        intentFilter.addAction(Service_BTLE_GATT.ACTION_GATT_CONNECTED);
-        intentFilter.addAction(Service_BTLE_GATT.ACTION_GATT_DISCONNECTED);
-        intentFilter.addAction(Service_BTLE_GATT.ACTION_GATT_SERVICES_DISCOVERED);
-        intentFilter.addAction(Service_BTLE_GATT.ACTION_DATA_AVAILABLE);
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTED);
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_DISCONNECTED);
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED);
+        intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
 
         return intentFilter;
     }
