@@ -72,7 +72,7 @@
         <activity android:name=".Settings" />
         <activity android:name=".customize" />
         <activity android:name=".MainActivity" />
-
+        <activity android:name=".Activity_BTLE_Services"/>
         <service
             android:name=".BluetoothLeService"
             android:enabled="true"

@@ -16,6 +16,7 @@
     </string>
     <string name="Fragment1">This is Fragment 1</string>
     <string name="Fragment2">This is Fragment 2</string>
+    <string name="CLIENT_CHARACTERISTIC_CONFIG">00002902-0000-1000-8000-00805f9b34fb"</string>
     <string name="Fragment3">This is Fragment 3</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_dashboard">Dashboard</string>

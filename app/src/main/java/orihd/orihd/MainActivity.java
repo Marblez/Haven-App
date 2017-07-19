@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ListView listView;
 
     private Button btn_Scan;
+    public static String finalname;
+    public static String finaladdress;
 
     private BroadcastReceiver_BTState mBTStateUpdateReceiver;
     private Scanner_BTLE mBTLeScanner;
@@ -131,10 +133,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String name = mBTDevicesArrayList.get(position).getName();
         String address = mBTDevicesArrayList.get(position).getAddress();
 
-        //Intent intent = new Intent(this, Activity_BTLE_Services.class);
-        //intent.putExtra(Activity_BTLE_Services.EXTRA_NAME, name);
-        //intent.putExtra(Activity_BTLE_Services.EXTRA_ADDRESS, address);
-        //startActivityForResult(intent, BTLE_SERVICES);
+        finalname = name;
+        finaladdress = address;
+        Intent intent = new Intent(this, Activity_BTLE_Services.class);
+
+        startActivityForResult(intent, BTLE_SERVICES);
+    }
+    public String getfinalname(){
+        return finalname;
+    }
+    public String getfinaladdress(){
+        return finaladdress;
     }
 
     @Override
