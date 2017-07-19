@@ -98,7 +98,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Intent registerIntent2 = new Intent(Login.this, Homemenu.class);
+                Intent registerIntent2 = new Intent(Login.this, MainActivity.class);
                 Login.this.startActivity(registerIntent2);
             }
 

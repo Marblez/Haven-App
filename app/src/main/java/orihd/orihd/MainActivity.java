@@ -142,6 +142,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boolean x = serviceinstance.connect(address,mBluetoothManager);
         if(x==true){
             Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
+            Intent registerIntent2 = new Intent(MainActivity.this, Homemenu.class);
+            MainActivity.this.startActivity(registerIntent2);
         }
         else if (x==false){
             Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
