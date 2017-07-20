@@ -57,6 +57,7 @@ public class FragmentTab1 extends Fragment {
     ProfilePictureView prof;
     TextView nametext;
     String str;
+    public static UUID BatteryLevel    = UUID.fromString("00002a19-0000-1000-8000-00805f9b34fb");
     private BluetoothGatt m_gatt;
 
     BluetoothGattCharacteristic mWriteCharacteristic;
@@ -76,6 +77,7 @@ public class FragmentTab1 extends Fragment {
         //        .fromString("00002a19-0000-1000-8000-00805f9b34fb"));;
 
 
+        BluetoothGattCharacteristic characteristic = new BluetoothGattCharacteristic(BatteryLevel,1,1);
         byte[] ADCValue3 = characteristic.getValue();
         String adc3Hex = ADCValue3.toString()
                 .replace("[", "")   //remove the right bracket

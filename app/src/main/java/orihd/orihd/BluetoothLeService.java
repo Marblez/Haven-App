@@ -267,6 +267,7 @@ public class BluetoothLeService extends Service {
             return;
         }
         mBluetoothGatt.readCharacteristic(characteristic);
+
     }
 
     public void readCustomCharacteristic() {

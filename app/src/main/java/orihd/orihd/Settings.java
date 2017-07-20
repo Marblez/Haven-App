@@ -17,6 +17,7 @@ import java.net.URL;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -40,7 +41,7 @@ public class Settings extends Fragment{
     public static int notifperm;
     public static int updateperm;
     public static int locationperm;
-
+    public static int seekvalue;
     public Settings() throws IOException {
     }
 
@@ -50,7 +51,17 @@ public class Settings extends Fragment{
         final View rootview = inflater.inflate(R.layout.activity_settings,container,false);
         final Switch notifications = (Switch) rootview.findViewById(R.id.switch2);
         final Switch updates= (Switch) rootview.findViewById(R.id.switch4);
+        final SeekBar seekbar = (SeekBar) rootview.findViewById(R.id.seekBar);
         final Switch location = (Switch) rootview.findViewById(R.id.switch5);
+
+        seekvalue = seekbar.getProgress();
+
+        seekbar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                seekvalue = seekbar.getProgress();
+                writeseekvalue();
+            }
+        });
 
         notifications.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -135,6 +146,13 @@ public class Settings extends Fragment{
         locationperm = 0;
     }
 
+    public void writeseekvalue(){
+        //BLUETOOTH WRITE CHARACTERISTIC IMPLEMENTATION
+
+
+
+        
+    }
 
 
 }
