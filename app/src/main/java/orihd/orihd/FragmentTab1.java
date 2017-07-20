@@ -41,6 +41,9 @@ import com.facebook.login.widget.ProfilePictureView;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -55,6 +58,7 @@ public class FragmentTab1 extends Fragment {
     private BluetoothLeService mBluetoothLeService;
     private BluetoothGatt mBluetoothGatt;
     ProfilePictureView prof;
+    public BluetoothGatt mbluetoothgatt;
     TextView nametext;
     String str;
     public static UUID BatteryLevel    = UUID.fromString("00002a19-0000-1000-8000-00805f9b34fb");
@@ -70,13 +74,13 @@ public class FragmentTab1 extends Fragment {
         BluetoothManager mBluetoothManager = MainActivity.bmstatic;
         BluetoothAdapter mBluetoothAdapter = MainActivity.bmadapter;
         BTLE_Device device = MainActivity.btlestatic;
-
+   
 
         //BluetoothGattService service = new BluetoothGattService();
         // BluetoothGattCharacteristic battery = (BluetoothGattCharacteristic) service.getCharacteristic(UUID
         //        .fromString("00002a19-0000-1000-8000-00805f9b34fb"));;
 
-
+        /*
         BluetoothGattCharacteristic characteristic = new BluetoothGattCharacteristic(BatteryLevel,1,1);
         byte[] ADCValue3 = characteristic.getValue();
         String adc3Hex = ADCValue3.toString()
@@ -93,6 +97,7 @@ public class FragmentTab1 extends Fragment {
             sb.append(String.format("%02x", b));
         }
         Log.w("ADC3", "StringBuilder " + sb);
+        */
 
 
 
@@ -219,7 +224,6 @@ public class FragmentTab1 extends Fragment {
     String lastName = profile.getLastName();
     String fullname = firstName + " " + lastName;
     String facebook_id = profile.getId();
-
 
 
 
