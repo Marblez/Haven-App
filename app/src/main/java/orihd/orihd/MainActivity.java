@@ -4,6 +4,7 @@ package orihd.orihd;
  * Created by Matthew on 7/18/2017.
  */
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothManager;
@@ -42,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private BluetoothGatt mBluetoothGatt;
     private BroadcastReceiver_BTState mBTStateUpdateReceiver;
     private Scanner_BTLE mBTLeScanner;
+
+    public static BluetoothManager bmstatic;
+    public static BluetoothAdapter bmadapter;
+    public static BTLE_Device btlestatic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,12 +140,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         stopScan();
         // Initiate BLE Connection
+        BTLE_Device device222 = mBTDevicesArrayList.get(position);
         String address = mBTDevicesArrayList.get(position).getAddress();
-        //final BluetoothDevice device = mBTDevicesArrayList.get(position);
+        finaladdress=address;
         Service_BTLE_GATT serviceinstance = new Service_BTLE_GATT();
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         boolean x = serviceinstance.connect(address,mBluetoothManager);
         if(x==true){
+            bmstatic=mBluetoothManager;
+            bmadapter=mBluetoothAdapter;
+            btlestatic=device222;
             Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
             Intent registerIntent2 = new Intent(MainActivity.this, Homemenu.class);
             MainActivity.this.startActivity(registerIntent2);

@@ -1,8 +1,13 @@
 package orihd.orihd;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothHeadset;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -44,17 +49,23 @@ public class FragmentTab1 extends Fragment {
     public static int picval;
     public static String globaltext;
     public static ImageView globalimage;
+    private BluetoothLeService mBluetoothLeService;
+    private BluetoothGatt mBluetoothGatt;
     ProfilePictureView prof;
     TextView nametext;
+    String str;
 
+    BluetoothGattCharacteristic mWriteCharacteristic;
     public FragmentTab1() throws IOException {
     }
 
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-     // BLUETOOTH IMPLEMENTATION WITH HARDWARE
-
+        // BLUETOOTH IMPLEMENTATION WITH HARDWARE
+        String address = MainActivity.finaladdress;
+        BluetoothManager mBluetoothManager = MainActivity.bmstatic;
+        BluetoothAdapter mBluetoothAdapter = MainActivity.bmadapter;
+        BTLE_Device device = MainActivity.btlestatic;
+       
 
 
 
@@ -121,8 +132,8 @@ public class FragmentTab1 extends Fragment {
         handler.post(new Runnable() {
             public void run() {
                 // Particles range from 0 ~ 1 billion
-               // unfilteredair.setProgress(progressStatus);
-               // unfilteredairtext.setText(progressStatus + " PPB");
+                // unfilteredair.setProgress(progressStatus);
+                // unfilteredairtext.setText(progressStatus + " PPB");
             }
         });
 
@@ -136,8 +147,47 @@ public class FragmentTab1 extends Fragment {
 
 
 
+
+
     return rootview;
     }
+
+
+
+    public void disconnect() {
+        if (mBluetoothGatt == null) {
+            Toast.makeText(getContext(), "Gatt is null", Toast.LENGTH_SHORT).show();
+
+            return;
+        }
+        mBluetoothGatt.disconnect();
+    }
+
+    public void close() {
+        if (mBluetoothGatt == null) {
+            Toast.makeText(getContext(), "Gatt is null", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mBluetoothGatt.close();
+        mBluetoothGatt = null;
+    }
+
+    public void readCharacteristic(BluetoothGattCharacteristic characteristic) {
+        if (mBluetoothGatt == null) {
+            Toast.makeText(getContext(), "Gatt is null", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mBluetoothGatt.readCharacteristic(characteristic);
+    }
+
+    public void writeCharacteristic(BluetoothGattCharacteristic characteristic) {
+        if (mBluetoothGatt == null) {
+            Toast.makeText(getContext(), "Gatt is null", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mBluetoothGatt.writeCharacteristic(characteristic);
+    }
+
 
     Profile profile = Profile.getCurrentProfile();
     String firstName = profile.getFirstName();
