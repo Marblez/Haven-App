@@ -70,7 +70,6 @@ public class FragmentTab1 extends Fragment {
         BluetoothAdapter mBluetoothAdapter = MainActivity.bmadapter;
         BTLE_Device device = MainActivity.btlestatic;
 
-        m_gatt = device.connectGatt(getApplicationContext(), false, m_callback);
 
         //BluetoothGattService service = new BluetoothGattService();
         // BluetoothGattCharacteristic battery = (BluetoothGattCharacteristic) service.getCharacteristic(UUID
@@ -177,11 +176,6 @@ public class FragmentTab1 extends Fragment {
     return rootview;
     }
 
-    private final BluetoothGattCallback m_callback = new BluetoothGattCallback()
-    {        public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
-        String testid = characteristic.getDescriptor(characteristic.getUuid()).getCharacteristic().getStringValue(0);
-    };
-    };
 
     public void disconnect() {
         if (mBluetoothGatt == null) {
