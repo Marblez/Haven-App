@@ -3,7 +3,9 @@ package orihd.orihd;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
@@ -39,6 +41,7 @@ import com.facebook.login.widget.ProfilePictureView;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -54,6 +57,7 @@ public class FragmentTab1 extends Fragment {
     ProfilePictureView prof;
     TextView nametext;
     String str;
+    private BluetoothGatt m_gatt;
 
     BluetoothGattCharacteristic mWriteCharacteristic;
     public FragmentTab1() throws IOException {
@@ -65,8 +69,29 @@ public class FragmentTab1 extends Fragment {
         BluetoothManager mBluetoothManager = MainActivity.bmstatic;
         BluetoothAdapter mBluetoothAdapter = MainActivity.bmadapter;
         BTLE_Device device = MainActivity.btlestatic;
-       
 
+        m_gatt = device.connectGatt(getApplicationContext(), false, m_callback);
+
+        //BluetoothGattService service = new BluetoothGattService();
+        // BluetoothGattCharacteristic battery = (BluetoothGattCharacteristic) service.getCharacteristic(UUID
+        //        .fromString("00002a19-0000-1000-8000-00805f9b34fb"));;
+
+
+        byte[] ADCValue3 = characteristic.getValue();
+        String adc3Hex = ADCValue3.toString()
+                .replace("[", "")   //remove the right bracket
+                .replace("]", ""); //remove the left bracket
+        String ch3 = (String.valueOf(characteristic.getUuid()));
+        String ch3UUID = ch3.substring(0, Math.min(ch3.length(), 8));
+        String adc3hex6 = adc3Hex.substring(adc3Hex.length() - 6);
+        StringBuilder sb = new StringBuilder();
+        for (byte b : ADCValue3) {
+            if (sb.length() > 0) {
+                sb.append(':');
+            }
+            sb.append(String.format("%02x", b));
+        }
+        Log.w("ADC3", "StringBuilder " + sb);
 
 
 
@@ -152,7 +177,11 @@ public class FragmentTab1 extends Fragment {
     return rootview;
     }
 
-
+    private final BluetoothGattCallback m_callback = new BluetoothGattCallback()
+    {        public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+        String testid = characteristic.getDescriptor(characteristic.getUuid()).getCharacteristic().getStringValue(0);
+    };
+    };
 
     public void disconnect() {
         if (mBluetoothGatt == null) {
