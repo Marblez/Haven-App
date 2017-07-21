@@ -41,7 +41,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     public double latitudev;
     public static double testing;
     private final static String TAG_FRAGMENT = "TAG_FRAGMENT";
-    static double arrayvalue[] = new double[100];
+    static double arrayvalue[] = new double[100000];
     public static FragmentTab2 newInstance() {
         FragmentTab2 fragment = new FragmentTab2();
         return fragment;

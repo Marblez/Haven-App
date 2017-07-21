@@ -7,11 +7,14 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +26,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     private final static String TAG = MainActivity.class.getSimpleName();
@@ -151,11 +155,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             bmstatic=mBluetoothManager;
             bmadapter=mBluetoothAdapter;
             btlestatic=device222;
-            mBluetoothGatt.discoverServices();
+            boolean ans = mBluetoothGatt.discoverServices();
+            if(ans) {
+                Toast.makeText(getApplicationContext(), "Connecting, please wait", Toast.LENGTH_LONG).show();
+                Handler handler = new Handler();
 
-            Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
-            Intent registerIntent2 = new Intent(MainActivity.this, Homemenu.class);
-            MainActivity.this.startActivity(registerIntent2);
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+
+                    }
+                }, 5000);   //5 seconds
+                Intent registerIntent2 = new Intent(MainActivity.this, Homemenu.class);
+                MainActivity.this.startActivity(registerIntent2);
+            }
         }
         else if (x==false){
             Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
@@ -181,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return finaladdress;
     }
 
-   
+
     public void onServicesDiscovered(BluetoothGatt gatt, int status) {
 
         if (status == BluetoothGatt.GATT_SUCCESS) {
@@ -256,4 +268,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mBTLeScanner.stop();
     }
+
+    private void displayGattServices(List<BluetoothGattService> gattServices) {
+        if (gattServices == null) return;
+        String uuid = null;
+        String unknownServiceString = getResources().
+                getString(R.string.unknown_service);
+        String unknownCharaString = getResources().
+                getString(R.string.unknown_characteristic);
+        ArrayList<HashMap<String, String>> gattServiceData =
+                new ArrayList<HashMap<String, String>>();
+        ArrayList<ArrayList<HashMap<String, String>>> gattCharacteristicData
+                = new ArrayList<ArrayList<HashMap<String, String>>>();
+        ArrayList<ArrayList<BluetoothGattCharacteristic>> mGattCharacteristics = new ArrayList<ArrayList<BluetoothGattCharacteristic>>();
+
+        // Loops through available GATT Services.
+        for (BluetoothGattService gattService : gattServices) {
+            HashMap<String, String> currentServiceData =
+                    new HashMap<String, String>();
+            uuid = gattService.getUuid().toString();
+            currentServiceData.put(
+                    LIST_NAME, SampleGattAttributes.
+                            lookup(uuid, unknownServiceString));
+            currentServiceData.put(LIST_UUID, uuid);
+            gattServiceData.add(currentServiceData);
+
+            ArrayList<HashMap<String, String>> gattCharacteristicGroupData =
+                    new ArrayList<HashMap<String, String>>();
+            List<BluetoothGattCharacteristic> gattCharacteristics =
+                    gattService.getCharacteristics();
+            ArrayList<BluetoothGattCharacteristic> charas =
+                    new ArrayList<BluetoothGattCharacteristic>();
+            // Loops through available Characteristics.
+            for (BluetoothGattCharacteristic gattCharacteristic :
+                    gattCharacteristics) {
+                charas.add(gattCharacteristic);
+                HashMap<String, String> currentCharaData =
+                        new HashMap<String, String>();
+                uuid = gattCharacteristic.getUuid().toString();
+                currentCharaData.put(
+                        LIST_NAME, SampleGattAttributes.lookup(uuid,
+                                unknownCharaString));
+                currentCharaData.put(LIST_UUID, uuid);
+                gattCharacteristicGroupData.add(currentCharaData);
+            }
+            mGattCharacteristics.add(charas);
+            gattCharacteristicData.add(gattCharacteristicGroupData);
+        }
+        ...
+    }
+    ...
+}
 }
