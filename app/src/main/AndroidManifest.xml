@@ -13,7 +13,6 @@
     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-feature android:name="android.hardware.bluetooth_le" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature
@@ -72,7 +71,7 @@
             android:label="@string/title_activity_settings_page" />
         <activity android:name=".Settings" />
         <activity android:name=".customize" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"/>
         <activity android:name=".Activity_BTLE_Services"/>
         <service
             android:name=".BluetoothLeService"
