@@ -233,6 +233,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
             }
             catch(java.lang.RuntimeException e){
             gohome();
+
         }
 
     }

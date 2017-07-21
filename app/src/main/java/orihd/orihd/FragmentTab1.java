@@ -74,7 +74,7 @@ public class FragmentTab1 extends Fragment {
         BluetoothManager mBluetoothManager = MainActivity.bmstatic;
         BluetoothAdapter mBluetoothAdapter = MainActivity.bmadapter;
         BTLE_Device device = MainActivity.btlestatic;
-   
+
 
         //BluetoothGattService service = new BluetoothGattService();
         // BluetoothGattCharacteristic battery = (BluetoothGattCharacteristic) service.getCharacteristic(UUID

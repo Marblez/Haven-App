@@ -145,11 +145,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         finaladdress=address;
         Service_BTLE_GATT serviceinstance = new Service_BTLE_GATT();
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+
         boolean x = serviceinstance.connect(address,mBluetoothManager);
-        if(x==true){
+        if(x){
             bmstatic=mBluetoothManager;
             bmadapter=mBluetoothAdapter;
             btlestatic=device222;
+            mBluetoothGatt.discoverServices();
+
             Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
             Intent registerIntent2 = new Intent(MainActivity.this, Homemenu.class);
             MainActivity.this.startActivity(registerIntent2);
@@ -178,6 +181,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return finaladdress;
     }
 
+   
+    public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+
+        if (status == BluetoothGatt.GATT_SUCCESS) {
+
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "No Atts", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    public void close(){
+        if(mBluetoothGatt == null){
+            return;
+        }
+        else{
+            mBluetoothGatt.close();
+            mBluetoothGatt = null;
+        }
+    }
 
     @Override
     public void onClick(View v) {
