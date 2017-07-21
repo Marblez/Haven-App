@@ -155,19 +155,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             bmstatic=mBluetoothManager;
             bmadapter=mBluetoothAdapter;
             btlestatic=device222;
-            boolean ans = mBluetoothGatt.discoverServices();
-            if(ans) {
-                Toast.makeText(getApplicationContext(), "Connecting, please wait", Toast.LENGTH_LONG).show();
+           // boolean ans = mBluetoothGatt.discoverServices();
+           // if(ans) {
+                Toast.makeText(getApplicationContext(), "Connecting, please wait", Toast.LENGTH_SHORT).show();
                 Handler handler = new Handler();
-
+/*
                 handler.postDelayed(new Runnable() {
                     public void run() {
 
                     }
                 }, 5000);   //5 seconds
+                */
                 Intent registerIntent2 = new Intent(MainActivity.this, Homemenu.class);
                 MainActivity.this.startActivity(registerIntent2);
-            }
+           // }
         }
         else if (x==false){
             Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
@@ -269,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBTLeScanner.stop();
     }
 
+    /*
     private void displayGattServices(List<BluetoothGattService> gattServices) {
         if (gattServices == null) return;
         String uuid = null;
@@ -315,8 +317,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mGattCharacteristics.add(charas);
             gattCharacteristicData.add(gattCharacteristicGroupData);
         }
-        ...
+
     }
-    ...
+*/
 }
-}
+
