@@ -142,12 +142,13 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
             longitudev = NewGPS.getLongitude();
             latitudev = NewGPS.getLatitude();
             LatLng current = new LatLng(latitudev, longitudev);
-
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 15));
             googleMap.addMarker(new MarkerOptions().position(current).icon(getMarkerIcon("#00f921"))
                     .title("Current Location"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 10));
         }
         else{
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 15));
             Toast.makeText(getContext(), "Turn On Location Tracking", Toast.LENGTH_SHORT).show();
 
         }
@@ -170,7 +171,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                 //String testval = Integer.toString(count);
                 //Toast.makeText(getContext(), testval, Toast.LENGTH_SHORT).show();
                 int limit = count -1;
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 15));
+
 
                 // Initialize the manager with the context and the map.
                 // (Activity extends context, so we can pass 'this' in the constructor.)
@@ -180,7 +181,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                 // manager.
                 googleMap.setOnCameraIdleListener(mClusterManager);
                 googleMap.setOnMarkerClickListener(mClusterManager);
-                
+
                 for(int x = 0; x <limit; x+=3){
                     double aqitemp;
                     double lattest;
@@ -190,13 +191,19 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                     int aqitest = (int) aqitemp;
                     lattest = arrayvalue[x+1];
                     longtest = arrayvalue[x+2];
+                    String color;
+                    String AQITAG = new String();
+                    String AQIMSG = new String();
+                    //CHANGE AQI VALUE HERE
 
-                    //LatLng newlocation = new LatLng(lattest,longtest);
-                    MyItem offsetItem = new MyItem(lattest, longtest);
+
+
+                    // DONE CHANGING AQI VALUE
+
+                    MyItem offsetItem = new MyItem(lattest, longtest,AQITAG, AQIMSG);
                     mClusterManager.addItem(offsetItem);
 
 
-                    String color;
                     switch(aqitest){
                         case 1:
                             color = "#00f921";
@@ -284,8 +291,16 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
 
     private void setUpClusterer(GoogleMap googleMap, double lat, double lng) {
         // Position the map.
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 15));
-
+        if(Settings.LocationStatus()== 1 ) {
+            TrackGPS NewGPS = new TrackGPS(getContext());
+            longitudev = NewGPS.getLongitude();
+            latitudev = NewGPS.getLatitude();
+            LatLng current = new LatLng(latitudev, longitudev);
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 15));
+        }
+        else {
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 15));
+        }
         // Initialize the manager with the context and the map.
         // (Activity extends context, so we can pass 'this' in the constructor.)
         mClusterManager = new ClusterManager<MyItem>(getContext(), googleMap);
