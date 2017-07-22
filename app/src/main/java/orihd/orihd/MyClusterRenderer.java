@@ -44,8 +44,13 @@ public class MyClusterRenderer extends DefaultClusterRenderer<MyItem> {
 
     @Override
     protected void onBeforeClusterRendered(Cluster<MyItem> cluster, MarkerOptions markerOptions){
+/*
+        final Drawable clusterIcon = getResources().getDrawable(R.drawable.ic_lens_black_24dp);
+        clusterIcon.setColorFilter(getResources().getColor(android.R.color.holo_orange_light), PorterDuff.Mode.SRC_ATOP);
 
+        mClusterIconGenerator.setBackground(clusterIcon);
 
+*/
         //modify padding for one or two digit numbers
         if (cluster.getSize() < 10) {
             mClusterIconGenerator.setContentPadding(40, 20, 0, 0);
