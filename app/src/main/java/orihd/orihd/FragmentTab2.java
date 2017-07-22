@@ -201,7 +201,9 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                     // DONE CHANGING AQI VALUE
 
                     MyItem offsetItem = new MyItem(lattest, longtest,AQITAG, AQIMSG);
+
                     mClusterManager.addItem(offsetItem);
+
 
 
                     switch(aqitest){
