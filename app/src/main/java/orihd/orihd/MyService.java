@@ -22,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 public class MyService extends Service {
 public Context context;
     private double[] arrayvalue;
+    public static String distance;
+    public static String state;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -32,7 +34,7 @@ public Context context;
         notification.setTicker("This is the Ticker");
         notification.setWhen(System.currentTimeMillis());
         notification.setContentTitle("AQI Alert!");
-        notification.setContentText("The AQI in your surrounding has reached a ")
+        notification.setContentText("The AQI in your surrounding has reached an unhealthy level");
 
         TrackGPS NewGPS = new TrackGPS(this);
         final double longitudev = NewGPS.getLongitude();
