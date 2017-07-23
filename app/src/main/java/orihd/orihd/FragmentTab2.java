@@ -154,6 +154,13 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
             longitudev = NewGPS.getLongitude();
             latitudev = NewGPS.getLatitude();
             LatLng current = new LatLng(latitudev, longitudev);
+
+            //START SERVICE
+            double doubleArray[] = {latitudev,longitudev};
+            Intent i= new Intent(getContext(), MyService.class);
+            i.putExtra("Location",doubleArray);
+            getContext().startService(i);
+
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 15));
             googleMap.addMarker(new MarkerOptions().position(current).icon(getMarkerIcon("#00f921"))
                     .title("Current Location"));

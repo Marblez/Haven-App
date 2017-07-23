@@ -63,6 +63,12 @@
         <activity android:name=".FragmentTab1" />
         <activity android:name=".FragmentTab2" />
         <activity android:name=".FragmentTab3" />
+        <service
+            android:name="MyService"
+            android:icon="@drawable/orihd"
+            android:label="MyService"
+            >
+        </service>
         <activity
             android:name=".Homemenu"
             android:label="@string/title_activity_homemenu"
