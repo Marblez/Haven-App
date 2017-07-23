@@ -420,6 +420,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
             super.onClusterItemRendered(clusterItem, marker);
         }
 
+        /*
         @Override
         protected void onBeforeClusterRendered(Cluster<MyItem> cluster, MarkerOptions markerOptions){
 
@@ -440,6 +441,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
             Bitmap icon = mClusterIconGenerator.makeIcon(String.valueOf(cluster.getSize()));
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon));
         }
+        */
     }
 
 
