@@ -28,13 +28,9 @@ public Context context;
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         //NOTIFICATION SETUP
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
+        final NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
         notification.setAutoCancel(true);
-        notification.setSmallIcon(R.drawable.alert);
-        notification.setTicker("This is the Ticker");
-        notification.setWhen(System.currentTimeMillis());
-        notification.setContentTitle("AQI Alert!");
-        notification.setContentText("The AQI in your surrounding has reached an unhealthy level");
+
 
         TrackGPS NewGPS = new TrackGPS(this);
         final double longitudev = NewGPS.getLongitude();
@@ -63,9 +59,15 @@ public Context context;
                                 double distlat = indexlat*indexlat;
                                 double truedist = distlat+distlong;
                                 double distance = Math.sqrt(truedist);
-                                if(aqivalue > 100 && distance > 1){
+                                if(aqivalue > 100 && distance > 0.08){
                                     //SEND PUSH NOTIFICATION
+                                    notification.setSmallIcon(R.drawable.alert);
+                                    notification.setTicker("This is the Ticker");
+                                    notification.setWhen(System.currentTimeMillis());
+                                    notification.setContentTitle("AQI Alert!");
+                                    notification.setContentText("The AQI value within a 30km distance has reached an unhealthy level");
 
+                                    
                                 }
                             }
                         }
