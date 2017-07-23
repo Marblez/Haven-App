@@ -70,11 +70,11 @@ public class FragmentTab1 extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // BLUETOOTH IMPLEMENTATION WITH HARDWARE
-        String address = MainActivity.finaladdress;
-        BluetoothManager mBluetoothManager = MainActivity.bmstatic;
-        BluetoothAdapter mBluetoothAdapter = MainActivity.bmadapter;
-        BTLE_Device device = MainActivity.btlestatic;
-        boolean ans = mBluetoothGatt.discoverServices();
+        //String address = MainActivity.finaladdress;
+        //BluetoothManager mBluetoothManager = MainActivity.bmstatic;
+       // BluetoothAdapter mBluetoothAdapter = MainActivity.bmadapter;
+        //BTLE_Device device = MainActivity.btlestatic;
+       // boolean ans = mBluetoothGatt.discoverServices();
 
         //BluetoothGattService service = new BluetoothGattService();
         // BluetoothGattCharacteristic battery = (BluetoothGattCharacteristic) service.getCharacteristic(UUID

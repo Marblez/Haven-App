@@ -117,7 +117,7 @@ public class Settings extends Fragment{
 
     public void TurnOffNotifications(){
 
-        notifperm = 0;
+        notifperm = 1;
     }
 
     public static int UpdateStatus(){
@@ -143,7 +143,7 @@ public class Settings extends Fragment{
 
     public void TurnOffLocation(){
 
-        locationperm = 0;
+        locationperm = 1;
     }
 
     public void writeseekvalue(){

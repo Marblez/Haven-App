@@ -7,6 +7,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import com.google.android.gms.maps.GoogleMap;
+
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -54,6 +57,9 @@ import orihd.orihd.Manifest.permission;
 public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     public double longitudev;
     public double latitudev;
+    public static int colorset;
+    public String mycolor;
+    public static String color;
     public List<MyItem> items;
 
     private ClusterManager<MyItem> mClusterManager;
@@ -144,7 +150,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         TrackGPS NewGPS = new TrackGPS(getContext());
-        if(Settings.LocationStatus()== 1 ) {
+
             longitudev = NewGPS.getLongitude();
             latitudev = NewGPS.getLatitude();
             LatLng current = new LatLng(latitudev, longitudev);
@@ -152,12 +158,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
             googleMap.addMarker(new MarkerOptions().position(current).icon(getMarkerIcon("#00f921"))
                     .title("Current Location"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 10));
-        }
-        else{
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 15));
-            Toast.makeText(getContext(), "Turn On Location Tracking", Toast.LENGTH_SHORT).show();
 
-        }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference("Location");
@@ -196,9 +197,9 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
 
                     aqitemp = arrayvalue[x];
                     int aqitest = (int) aqitemp;
+                    color = aqiprocess(aqitest);
                     lattest = arrayvalue[x+1];
                     longtest = arrayvalue[x+2];
-                    String color;
                     String AQITAG = new String();
                     String AQIMSG = new String();
                     //CHANGE AQI VALUE HERE
@@ -207,37 +208,10 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
 
                     // DONE CHANGING AQI VALUE
 
-                    MyItem offsetItem = new MyItem(lattest, longtest,AQITAG, AQIMSG);
+                    MyItem offsetItem = new MyItem(lattest, longtest,AQITAG, AQIMSG,color);
 
                     mClusterManager.addItem(offsetItem);
 
-
-
-                    switch(aqitest){
-                        case 1:
-                            color = "#00f921";
-                            break;
-                        case 2:
-                            color = "#e5e514";
-                            break;
-                        case 3:
-                            color = "#ff9d00";
-                            break;
-                        case 4:
-                            color = "#ff1500";
-                            break;
-                        case 5:
-                            color = "#1b0289";
-                            break;
-                        case 6:
-                            color = "#4B0082";
-                            break;
-                        default:
-                            color = "#e5e514";
-                            break;
-
-
-                    }
 
                     //googleMap.addMarker(new MarkerOptions().position(newlocation).icon(getMarkerIcon(color))
                     //);
@@ -371,9 +345,74 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         protected void onBeforeClusterItemRendered(MyItem item,
                                                    MarkerOptions markerOptions) {
 
-            BitmapDescriptor markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA);
+            String colorprivate = item.getColor();
+            switch(colorprivate){
+                case "#00f921":
+                    BitmapDescriptor markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                case "#e5e514":
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                case "#ff9d00":
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                case "#ff1500":
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                case "#5500b7":
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                case "#966600":
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                default:
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+            }
 
-            markerOptions.icon(markerDescriptor);
+            /*switch(color){
+                case "#00f921":
+
+                    //  BitmapDescriptor markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
+                    BitmapDescriptor markerDescriptor = getMarkerIcon("color");
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                case "#e5e514":
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                case "#ff9d00":
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                case "#ff1500":
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                case "#5500b7":
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                case "#966600":
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                default:
+                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+            }
+            */
+
+
+
         }
 
         @Override
@@ -383,25 +422,30 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
 
         @Override
         protected void onBeforeClusterRendered(Cluster<MyItem> cluster, MarkerOptions markerOptions){
-/*
-        final Drawable clusterIcon = getResources().getDrawable(R.drawable.ic_lens_black_24dp);
-        clusterIcon.setColorFilter(getResources().getColor(android.R.color.holo_orange_light), PorterDuff.Mode.SRC_ATOP);
 
-        mClusterIconGenerator.setBackground(clusterIcon);
 
-*/
+        final Drawable clusterIcon = getResources().getDrawable(R.drawable.testjewel);
+
+
+
+
             //modify padding for one or two digit numbers
             if (cluster.getSize() < 10) {
-                mClusterIconGenerator.setContentPadding(40, 20, 0, 0);
+                mClusterIconGenerator.setContentPadding(10, 10, 10, 10);
             }
             else {
-                mClusterIconGenerator.setContentPadding(30, 20, 0, 0);
+                mClusterIconGenerator.setContentPadding(10, 10, 10, 10);
             }
 
             Bitmap icon = mClusterIconGenerator.makeIcon(String.valueOf(cluster.getSize()));
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon));
         }
     }
+
+
+
+
+
     public void gohome(){
         Intent i = new Intent(Intent.ACTION_MAIN);
         i.addCategory(Intent.CATEGORY_HOME);
@@ -415,6 +459,40 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         String longitude;
         String latitude;
 
+    }
+
+    public String aqiprocess(int aqivalue){
+        if(aqivalue<=50){
+            mycolor = "#00f921";
+        }
+        else if (aqivalue <=100){
+            mycolor = "#e5e514";
+        }
+        else if (aqivalue <=150){
+            mycolor = "#ff9d00";
+        }
+        else if (aqivalue <=200){
+            mycolor = "#ff1500";
+        }
+        else if (aqivalue <=300){
+            mycolor = "#5500b7";
+        }
+        else if (aqivalue <=300){
+            mycolor = "#966600";
+        }
+        else{
+            mycolor = "#966600";
+        }
+
+        //NOTIFICATION CHECK//////////////////////////////////
+
+
+
+
+
+        /////////////////////////////////////////////////////
+
+        return mycolor;
     }
 
 
