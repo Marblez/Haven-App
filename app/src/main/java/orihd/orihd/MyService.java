@@ -1,5 +1,7 @@
 package orihd.orihd;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -24,12 +26,9 @@ public Context context;
     private double[] arrayvalue;
     public static String distance;
     public static String state;
+    private static final int uniqueID=45612;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-        //NOTIFICATION SETUP
-        final NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
-        notification.setAutoCancel(true);
 
 
         TrackGPS NewGPS = new TrackGPS(this);
@@ -61,13 +60,7 @@ public Context context;
                                 double distance = Math.sqrt(truedist);
                                 if(aqivalue > 100 && distance > 0.08){
                                     //SEND PUSH NOTIFICATION
-                                    notification.setSmallIcon(R.drawable.alert);
-                                    notification.setTicker("This is the Ticker");
-                                    notification.setWhen(System.currentTimeMillis());
-                                    notification.setContentTitle("AQI Alert!");
-                                    notification.setContentText("The AQI value within a 30km distance has reached an unhealthy level");
-
-                                    
+                                sendnotification();
                                 }
                             }
                         }
@@ -87,6 +80,23 @@ public Context context;
 
 
         return Service.START_STICKY;
+    }
+
+    public void sendnotification(){
+        // Building Notification
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
+        notification.setAutoCancel(true);
+        notification.setSmallIcon(R.drawable.alert);
+        notification.setTicker("This is the Ticker");
+        notification.setWhen(System.currentTimeMillis());
+        notification.setContentTitle("AQI Alert!");
+        notification.setContentText("The AQI value within a 30km distance has reached an unhealthy level");
+        Intent intent = new Intent(this,MyService.class);
+        PendingIntent pendingintent = PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notification.setContentIntent(pendingintent);
+
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        nm.notify(uniqueID, notification.build());
     }
 
     @Override
