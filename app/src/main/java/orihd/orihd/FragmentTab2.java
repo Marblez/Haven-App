@@ -77,6 +77,8 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        Intent i= new Intent(getContext(), MyService.class);
+        getContext().startService(i);
 
         /*FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference("Location");
@@ -157,9 +159,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
 
             //START SERVICE
             double doubleArray[] = {latitudev,longitudev};
-            Intent i= new Intent(getContext(), MyService.class);
-            i.putExtra("Location",doubleArray);
-            getContext().startService(i);
+
 
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 15));
             googleMap.addMarker(new MarkerOptions().position(current).icon(getMarkerIcon("#00f921"))
