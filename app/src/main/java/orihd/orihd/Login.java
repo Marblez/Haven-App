@@ -1,6 +1,8 @@
 package orihd.orihd;
 
 import android.app.ActionBar;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
@@ -139,6 +142,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     if (token != null) {
                         //Means user is logged in
                         Intent registerIntent1234 = new Intent(Login.this, Homemenu.class);
+                       // sendnotification();
                         Login.this.startActivity(registerIntent1234);
                         finish();
                     }
@@ -157,7 +161,24 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
         return super.onTouchEvent(event);
     }
+/*
+    public void sendnotification(){
+        // Building Notification
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
+        notification.setAutoCancel(true);
+        notification.setSmallIcon(R.drawable.alert);
+        notification.setTicker("This is the Ticker");
+        notification.setWhen(System.currentTimeMillis());
+        notification.setContentTitle("AQI Alert!");
+        notification.setContentText("Air Quality within 30km is poor");
+        Intent intent = new Intent(this,MyService.class);
+        PendingIntent pendingintent = PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notification.setContentIntent(pendingintent);
 
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        nm.notify(45612, notification.build());
+    }
+*/
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

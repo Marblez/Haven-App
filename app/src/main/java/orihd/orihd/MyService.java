@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MyService extends Service {
 public Context context;
-    private double[] arrayvalue;
+    static double arrayvalue[] = new double[100000];
     public static String distance;
     public static String state;
     private static final int uniqueID=45612;
@@ -89,8 +89,8 @@ public Context context;
         notification.setSmallIcon(R.drawable.alert);
         notification.setTicker("This is the Ticker");
         notification.setWhen(System.currentTimeMillis());
-        notification.setContentTitle("AQI Alert!");
-        notification.setContentText("The AQI value within a 30km distance has reached an unhealthy level");
+        notification.setContentTitle("AQI Alert from ORIHD!");
+        notification.setContentText("Air Quality within 30km radius is unhealthy");
         Intent intent = new Intent(this,MyService.class);
         PendingIntent pendingintent = PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
         notification.setContentIntent(pendingintent);
