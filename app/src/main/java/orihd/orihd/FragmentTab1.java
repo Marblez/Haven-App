@@ -69,6 +69,8 @@ public class FragmentTab1 extends Fragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Intent i= new Intent(getContext(), MyService.class);
+        getContext().startService(i);
         // BLUETOOTH IMPLEMENTATION WITH HARDWARE
         //String address = MainActivity.finaladdress;
         //BluetoothManager mBluetoothManager = MainActivity.bmstatic;

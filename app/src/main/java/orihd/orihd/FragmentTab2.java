@@ -77,8 +77,8 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        Intent i= new Intent(getContext(), MyService.class);
-        getContext().startService(i);
+        //Intent i= new Intent(getContext(), MyService.class);
+        //getContext().startService(i);
 
         /*FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference("Location");

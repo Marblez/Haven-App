@@ -60,7 +60,7 @@ public Context context;
                                 double distlat = indexlat*indexlat;
                                 double truedist = distlat+distlong;
                                 double distance = Math.sqrt(truedist);
-                                if(aqivalue > 100 && distance > 0.08){
+                                if(aqivalue > 150 && distance > 0.08){
                                     //SEND PUSH NOTIFICATION
                                 sendnotification();
                                 }
