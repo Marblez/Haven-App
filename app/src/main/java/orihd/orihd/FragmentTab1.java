@@ -37,6 +37,11 @@ import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONObject;
 
@@ -55,8 +60,10 @@ public class FragmentTab1 extends Fragment {
     public static int picval;
     public static String globaltext;
     public static ImageView globalimage;
+    public static int AQI;
     private BluetoothLeService mBluetoothLeService;
     private BluetoothGatt mBluetoothGatt;
+    static double arrayvalue[] = new double[100000];
     ProfilePictureView prof;
     public BluetoothGatt mbluetoothgatt;
     TextView nametext;
@@ -162,8 +169,16 @@ public class FragmentTab1 extends Fragment {
         final TextView no2text = (TextView) rootview.findViewById(R.id.textView12);
         final TextView filterstatetext = (TextView) rootview.findViewById(R.id.textView13);
         final TextView batterytext = (TextView) rootview.findViewById(R.id.txtview5);
+
+
         handler.post(new Runnable() {
             public void run() {
+                TrackGPS NewGPS = new TrackGPS(getContext());
+                double longitudev = NewGPS.getLongitude();
+                double latitudev = NewGPS.getLatitude();
+                int aqiupdate = getAQI(latitudev,longitudev);
+                filteredtext.setText(aqiupdate);
+                
                 // Particles range from 0 ~ 1 billion
                 // unfilteredair.setProgress(progressStatus);
                 // unfilteredairtext.setText(progressStatus + " PPB");
@@ -287,6 +302,55 @@ public class FragmentTab1 extends Fragment {
             mGattCharacteristics.add(charas);
             gattCharacteristicData.add(gattCharacteristicGroupData);
         }
+    }
+    public int getAQI(final double latitudev, final double longitudev){
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseRef = database.getReference("Location");
+
+        databaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int count = 0;
+
+                double tempdistance = 99999;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    for (DataSnapshot snapshot2 : snapshot.getChildren()) {
+                        double doubleval = snapshot2.getValue(double.class);
+                        arrayvalue[count] = doubleval;
+                        if (count != 0) {
+                            if (count % 3 == 0) {
+                                double testlong = arrayvalue[count - 1];
+                                double testlat = arrayvalue[count - 2];
+                                double aqivalue = arrayvalue[count - 3];
+                                double indexlong = Math.abs(longitudev - testlong);
+                                double indexlat = Math.abs(latitudev - testlat);
+                                double distlong = indexlong * indexlong;
+                                double distlat = indexlat * indexlat;
+                                double truedist = distlat + distlong;
+                                double distance = Math.sqrt(truedist);
+                                if (tempdistance > distance) {
+                                    tempdistance = distance;
+                                    AQI = (int) aqivalue;
+
+                                }
+                                count++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
+        });
+
+
+           return AQI;
     }
 
 
