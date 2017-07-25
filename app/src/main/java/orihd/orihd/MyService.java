@@ -60,7 +60,7 @@ public Context context;
                                 double distlat = indexlat*indexlat;
                                 double truedist = distlat+distlong;
                                 double distance = Math.sqrt(truedist);
-                                if(aqivalue > 150 && distance > 0.08){
+                                if(aqivalue > 150 && distance < 0.04){
                                     //SEND PUSH NOTIFICATION
                                 sendnotification();
                                 }
@@ -92,9 +92,9 @@ public Context context;
         notification.setTicker("This is the Ticker");
         notification.setWhen(System.currentTimeMillis());
         notification.setContentTitle("AQI Alert from ORIHD!");
-        notification.setContentText("Air Quality within 30km radius is unhealthy");
-        Uri alarmSound = RingtoneManager.getDefaultUri(R.raw.systemfault);
-        notification.setSound(alarmSound);
+        notification.setContentText("Air Quality within 15km radius is unhealthy");
+        Uri sound = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.systemfault);
+        notification.setSound(sound);
         Intent intent = new Intent(this,MyService.class);
         PendingIntent pendingintent = PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
         notification.setContentIntent(pendingintent);

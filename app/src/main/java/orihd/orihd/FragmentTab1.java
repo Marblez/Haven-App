@@ -177,8 +177,9 @@ public class FragmentTab1 extends Fragment {
                 double longitudev = NewGPS.getLongitude();
                 double latitudev = NewGPS.getLatitude();
                 int aqiupdate = getAQI(latitudev,longitudev);
-                filteredtext.setText(aqiupdate);
-                
+                filteredtext.setText(String.valueOf(aqiupdate));
+                int aqipercentage = aqiupdate/5;
+                filteredair.setProgress(aqipercentage);
                 // Particles range from 0 ~ 1 billion
                 // unfilteredair.setProgress(progressStatus);
                 // unfilteredairtext.setText(progressStatus + " PPB");
@@ -334,9 +335,10 @@ public class FragmentTab1 extends Fragment {
                                     AQI = (int) aqivalue;
 
                                 }
-                                count++;
+
                             }
                         }
+                        count++;
                     }
                 }
             }
@@ -349,8 +351,8 @@ public class FragmentTab1 extends Fragment {
 
         });
 
-
            return AQI;
+
     }
 
 
