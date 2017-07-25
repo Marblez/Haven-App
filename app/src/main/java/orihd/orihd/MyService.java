@@ -93,7 +93,7 @@ public Context context;
         notification.setWhen(System.currentTimeMillis());
         notification.setContentTitle("AQI Alert from ORIHD!");
         notification.setContentText("Air Quality within 30km radius is unhealthy");
-        Uri alarmSound = RingtoneManager.getDefaultUri(R.raw.system_fault);
+        Uri alarmSound = RingtoneManager.getDefaultUri(R.raw.systemfault);
         notification.setSound(alarmSound);
         Intent intent = new Intent(this,MyService.class);
         PendingIntent pendingintent = PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
