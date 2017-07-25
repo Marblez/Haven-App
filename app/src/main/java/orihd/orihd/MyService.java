@@ -64,6 +64,9 @@ public Context context;
                                     //SEND PUSH NOTIFICATION
                                 sendnotification();
                                 }
+                                else if (aqivalue > 100 && distance < 0.04){
+                                    send2notification();
+                                }
                             }
                         }
 
@@ -95,6 +98,23 @@ public Context context;
         notification.setContentText("Air Quality within 15km radius is unhealthy");
         Uri sound = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.systemfault);
         notification.setSound(sound);
+        Intent intent = new Intent(this,MyService.class);
+        PendingIntent pendingintent = PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notification.setContentIntent(pendingintent);
+
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        nm.notify(uniqueID, notification.build());
+    }
+
+    public void send2notification(){
+        // Building Notification
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
+        notification.setAutoCancel(true);
+        notification.setSmallIcon(R.drawable.yellowicon);
+        notification.setTicker("This is the Ticker");
+        notification.setWhen(System.currentTimeMillis());
+        notification.setContentTitle("AQI Alert from ORIHD!");
+        notification.setContentText("Air Quality within 15km is unhealthy for sensitive groups");
         Intent intent = new Intent(this,MyService.class);
         PendingIntent pendingintent = PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
         notification.setContentIntent(pendingintent);
