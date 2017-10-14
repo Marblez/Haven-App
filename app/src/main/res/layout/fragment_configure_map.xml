@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="orihd.orihd.ConfigureMap">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <TextView
+        android:text="Configure Map"
+        android:textStyle="bold"
+        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView23" />
+
+    <Button
+        android:text="Generate Map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="76dp"
+        android:id="@+id/button3" />
+
+    <Switch
+        android:text="Markers                                   "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:id="@+id/switch6"
+        android:layout_below="@+id/textView23"
+        android:layout_centerHorizontal="true" />
+
+    <Switch
+        android:text="Heat Maps                              "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/switch6"
+        android:layout_alignRight="@+id/switch6"
+        android:layout_alignEnd="@+id/switch6"
+        android:layout_marginTop="31dp"
+        android:id="@+id/switch7" />
+
+    <fragment
+        android:id="@+id/place_autocomplete_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+        android:layout_below="@+id/switch7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="55dp" />
+</RelativeLayout>

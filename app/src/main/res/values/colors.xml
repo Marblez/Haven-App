@@ -5,7 +5,12 @@
     <color name="colorAccent">#FF4081</color>
     <color name="translucent_red">#80ff0000</color>
     <color name= "yellow">#f6ff00</color>
-    <color name= "green">#00ff33</color>
+    <color name= "green">#28B463</color>
     <color name= "gray">#535e60</color>
     <color name= "red">#ff0000</color>
+    <color name= "white">#ffffff</color>
+    <color name= "lightblue">#85C1E9</color>
+    <color name= "purple">#45B39D</color>
+    <color name="random">#F5B7B1</color>
+    <color name="particulates">#2874A6</color>
 </resources>

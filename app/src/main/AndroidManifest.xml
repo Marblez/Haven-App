@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="orihd.orihd">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -7,6 +8,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -24,13 +27,15 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/icon"
         android:label="OriHD"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:label">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAdEiJYGJyIqespoMIAhpYT3B-xmruIYxc" />
@@ -60,33 +65,37 @@
         <activity android:name=".friends" />
         <activity android:name=".mypet" />
         <activity android:name=".Guidance" />
-        <activity android:name=".FragmentTab1" />
-        <activity android:name=".FragmentTab2" />
-        <activity android:name=".FragmentTab3" />
+
         <service
-            android:name="MyService"
+            android:name=".MyService"
             android:icon="@drawable/orihd"
-            android:label="MyService"
-            >
-        </service>
+            android:label="MyService" />
+
         <activity
             android:name=".Homemenu"
             android:label="@string/title_activity_homemenu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SettingsPage"
+            android:name=".Settings"
             android:label="@string/title_activity_settings_page" />
-        <activity android:name=".Settings" />
         <activity android:name=".customize" />
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".Activity_BTLE_Services"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Activity_BTLE_Services" />
+
         <service
             android:name=".BluetoothLeService"
             android:enabled="true"
             android:exported="true" />
 
         <activity android:name=".Main2Activity" />
-        <activity android:name=".Activity_BTLE_Services"></activity>
+        <activity
+            android:name=".DrawerActivity"
+            android:label="@string/title_activity_drawer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".InfoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

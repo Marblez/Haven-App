@@ -232,6 +232,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 break;
+            case R.id.skip:
+                Intent cust = new Intent(MainActivity.this, Homemenu.class);
+                MainActivity.this.startActivity(cust);
             default:
                 break;
         }

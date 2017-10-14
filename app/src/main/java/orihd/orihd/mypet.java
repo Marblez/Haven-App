@@ -40,10 +40,9 @@ public class mypet extends AppCompatActivity implements View.OnClickListener {
 
                 break;
 
-            case R.id.clean:
-                Toast.makeText(getApplicationContext(), "Display clean animation", Toast.LENGTH_LONG).show();
-                break;
+
         }
     }
 }
+
 

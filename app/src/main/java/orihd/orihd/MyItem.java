@@ -13,7 +13,13 @@ public class MyItem implements ClusterItem{
     public String mTitle;
     public String mSnippet;
     public String ClusterColor;
+    public int AQIVALUE;
 
+    public MyItem(double lat, double lng, int aqi, String ClusterColor2){
+        ClusterColor = ClusterColor2;
+        mPosition = new LatLng(lat,lng);
+        AQIVALUE = aqi;
+    }
     public MyItem(double lat, double lng, String title, String snippet, String ClusterColor2){
         mPosition = new LatLng(lat, lng);
         mTitle = title;
@@ -47,4 +53,9 @@ public class MyItem implements ClusterItem{
     }
 
     public String getColor(){ return ClusterColor;}
+
+    public int getAQIVALUE(){
+        return AQIVALUE;
+    }
+
 }

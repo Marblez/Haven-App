@@ -27,6 +27,7 @@ public class MyService extends Service {
 public Context context;
     static double arrayvalue[] = new double[100000];
     public static String distance;
+    public static double theaqivalue = 0;
     public static String state;
     private static final int uniqueID=45612;
     @Override
@@ -60,6 +61,7 @@ public Context context;
                                 double distlat = indexlat*indexlat;
                                 double truedist = distlat+distlong;
                                 double distance = Math.sqrt(truedist);
+                                theaqivalue = aqivalue;
                                 if(aqivalue > 150 && distance < 0.04){
                                     //SEND PUSH NOTIFICATION
                                 sendnotification();

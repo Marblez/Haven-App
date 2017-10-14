@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/homeicon"
+            android:title="Home" />
+        <item
+            android:id="@+id/maps"
+            android:icon="@drawable/com"
+            android:title="Maps" />
+        <item
+            android:id="@+id/info"
+            android:icon="@drawable/info"
+            android:title="Info" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/settingsicon"
+            android:title="Settings" />
+    </group>
+
+    <item android:title="Connect">
+        <menu>
+            <item
+                android:id="@+id/addfam"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Manage Connections" />
+            <item
+                android:id="@+id/viewfam"
+                android:icon="@drawable/ic_menu_send"
+                android:title="View Connections" />
+        </menu>
+    </item>
+
+</menu>

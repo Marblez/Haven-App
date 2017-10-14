@@ -6,22 +6,37 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+
+
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
 import com.google.android.gms.maps.GoogleMap;
 
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.Manifest;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -34,6 +49,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.TileOverlay;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -46,10 +62,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
+import com.google.maps.android.ui.SquareTextView;
 
 import org.json.JSONException;
 
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.List;
 
 import orihd.orihd.Manifest.permission;
@@ -60,7 +78,15 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     public static int colorset;
     public String mycolor;
     public static String color;
+    public GoogleMap googleMap;
     public List<MyItem> items;
+
+    private IconGenerator mIconGenerator;
+    private ShapeDrawable mColoredCircleBackground;
+    private SparseArray<BitmapDescriptor> mIcons = new SparseArray();
+    private float mDensity;
+    private Context mContext;
+
 
     private ClusterManager<MyItem> mClusterManager;
     public static double testing;
@@ -79,6 +105,22 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         mapFragment.getMapAsync(this);
         //Intent i= new Intent(getContext(), MyService.class);
         //getContext().startService(i);
+/*
+        SupportPlaceAutocompleteFragment autocompleteFragment = (SupportPlaceAutocompleteFragment) this.getChildFragmentManager()
+                .findFragmentById(R.id.place_autocomplete_fragment);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+
+            }
+
+            @Override
+            public void onError(Status status) {
+
+            }
+        });
+*/
 
         /*FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference("Location");
@@ -215,7 +257,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
 
                     // DONE CHANGING AQI VALUE
 
-                    MyItem offsetItem = new MyItem(lattest, longtest,AQITAG, AQIMSG,color);
+                    MyItem offsetItem = new MyItem(lattest, longtest,aqitest,color);
 
                     mClusterManager.addItem(offsetItem);
 
@@ -346,11 +388,18 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
         public MyClusterRenderer(Context context, GoogleMap map,
                                  ClusterManager<MyItem> clusterManager) {
             super(context, map, clusterManager);
+            // Set minimum cluster size
+            setMinClusterSize(3);
+
         }
+
 
         @Override
         protected void onBeforeClusterItemRendered(MyItem item,
                                                    MarkerOptions markerOptions) {
+
+
+
 
             String colorprivate = item.getColor();
             switch(colorprivate){
@@ -427,28 +476,75 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
             super.onClusterItemRendered(clusterItem, marker);
         }
 
-        /*
+
+
         @Override
-        protected void onBeforeClusterRendered(Cluster<MyItem> cluster, MarkerOptions markerOptions){
+        protected void onBeforeClusterRendered(Cluster<MyItem> cluster, MarkerOptions markerOptions) {
+            int colordef = 0;
+            double colordef2 = 0;
+            int tempvar = 0;
+            double sumtotal = 0;
+            double size = cluster.getSize();
 
-
-        final Drawable clusterIcon = getResources().getDrawable(R.drawable.testjewel);
-
-
-
-
-            //modify padding for one or two digit numbers
-            if (cluster.getSize() < 10) {
-                mClusterIconGenerator.setContentPadding(10, 10, 10, 10);
-            }
-            else {
-                mClusterIconGenerator.setContentPadding(10, 10, 10, 10);
+            Collection<MyItem> tempitems = cluster.getItems();
+            for(MyItem item : tempitems) {
+                tempvar = item.getAQIVALUE();
+                sumtotal = sumtotal + tempvar;
             }
 
-            Bitmap icon = mClusterIconGenerator.makeIcon(String.valueOf(cluster.getSize()));
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon));
+            colordef2 = sumtotal/size;
+
+            if(colordef2 < 50){
+                colordef = 1;
+            }
+            else if(colordef2 <100){
+                colordef=2;
+            }
+            else if (colordef2 < 150){
+                colordef =3;
+            }
+            else if (colordef2 < 200){
+                colordef =4;
+            }
+            else if (colordef2 < 300){
+                colordef =5;
+            }
+            else{
+                colordef = 6;
+            }
+            switch(colordef){
+                case 1:
+                    BitmapDescriptor markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
+                    markerOptions.icon(markerDescriptor);
+                    break;
+                case 2:
+                    BitmapDescriptor markerDescriptor2 = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW);
+                    markerOptions.icon(markerDescriptor2);
+                    break;
+                case 3:
+                    BitmapDescriptor markerDescriptor3 = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
+                    markerOptions.icon(markerDescriptor3);
+                    break;
+                case 4:
+                    BitmapDescriptor markerDescriptor4 = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED);
+                    markerOptions.icon(markerDescriptor4);
+                    break;
+                case 5:
+                    BitmapDescriptor markerDescriptor5 = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA);
+                    markerOptions.icon(markerDescriptor5);
+                    break;
+                case 6:
+                    BitmapDescriptor markerDescriptor6 = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET);
+                    markerOptions.icon(markerDescriptor6);
+                    break;
+                default:
+                    BitmapDescriptor markerDescriptord = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
+                    markerOptions.icon(markerDescriptord);
+                    break;
+
+            }
+
         }
-        */
     }
 
 
