@@ -4,5 +4,5 @@ Completed features including profile and AQI databasing with Google Firebase, FB
 Google maps clustering display, UI development and Bluetooth TCP.
 </p>
 <p><strong>The mobile app was featured in an AmericanInno news article! Check out the article <a href = "https://www.americaninno.com/This+Smart+Portable+Air+Purifier+Doubles+as+a+Mask+to+Help+You+Breathe+Clean+Air">here.</a></strong></p>
-![alt text](https://www.americaninno.com/wp-content/uploads/2017/09/orihd-237x420.jpeg)
+
 
