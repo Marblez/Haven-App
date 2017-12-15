@@ -6,3 +6,10 @@ Google maps clustering display, UI development and Bluetooth TCP.
 <p><strong>The mobile app was featured in an AmericanInno news article! Check out the article <a href = "https://www.americaninno.com/This+Smart+Portable+Air+Purifier+Doubles+as+a+Mask+to+Help+You+Breathe+Clean+Air">here.</a></strong></p>
 <img src="https://github.com/Marblez/OriHD-App/blob/master/login.jpg" width="230" height="400" align="left">
 <img src="https://github.com/Marblez/OriHD-App/blob/master/homepage.jpg" width="230" height="400" align="center">
+<img src="https://github.com/Marblez/OriHD-App/blob/master/homepage.jpg" width="230" height="400" align="right">
+<img src="https://github.com/Marblez/OriHD-App/blob/master/login.jpg" width="230" height="400" align="left">
+<img src="https://github.com/Marblez/OriHD-App/blob/master/homepage.jpg" width="230" height="400" align="center">
+<img src="https://github.com/Marblez/OriHD-App/blob/master/homepage.jpg" width="230" height="400" align="right">
+<img src="https://github.com/Marblez/OriHD-App/blob/master/login.jpg" width="230" height="400" align="left">
+<img src="https://github.com/Marblez/OriHD-App/blob/master/homepage.jpg" width="230" height="400" align="center">
+<img src="https://github.com/Marblez/OriHD-App/blob/master/homepage.jpg" width="230" height="400" align="right">
