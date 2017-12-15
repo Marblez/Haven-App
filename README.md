@@ -5,4 +5,4 @@ Google maps clustering display, UI development and Bluetooth TCP.
 </p>
 <p><strong>The mobile app was featured in an AmericanInno news article! Check out the article <a href = "https://www.americaninno.com/This+Smart+Portable+Air+Purifier+Doubles+as+a+Mask+to+Help+You+Breathe+Clean+Air">here.</a></strong></p>
 
-![alt text](login.jpg "Login Screen")
+![alt text](login.jpg =250x250 "Login Screen")
