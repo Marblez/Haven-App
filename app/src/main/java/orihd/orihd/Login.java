@@ -164,22 +164,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
     /*
-        public void sendnotification(){
-            // Building Notification
-            NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
-            notification.setAutoCancel(true);
-            notification.setSmallIcon(R.drawable.alert);
-            notification.setTicker("This is the Ticker");
-            notification.setWhen(System.currentTimeMillis());
-            notification.setContentTitle("AQI Alert!");
-            notification.setContentText("Air Quality within 30km is poor");
-            Intent intent = new Intent(this,MyService.class);
-            PendingIntent pendingintent = PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            notification.setContentIntent(pendingintent);
 
-            NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            nm.notify(45612, notification.build());
-        }
     */
     @Override
     public void onClick(View v) {

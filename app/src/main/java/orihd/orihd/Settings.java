@@ -51,17 +51,9 @@ public class Settings extends Fragment{
         final View rootview = inflater.inflate(R.layout.activity_settings,container,false);
         final Switch notifications = (Switch) rootview.findViewById(R.id.switch2);
         final Switch updates= (Switch) rootview.findViewById(R.id.switch4);
-        final SeekBar seekbar = (SeekBar) rootview.findViewById(R.id.seekBar);
         final Switch location = (Switch) rootview.findViewById(R.id.switch5);
 
-        seekvalue = seekbar.getProgress();
 
-        seekbar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                seekvalue = seekbar.getProgress();
-                writeseekvalue();
-            }
-        });
 
         notifications.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -80,11 +72,11 @@ public class Settings extends Fragment{
             public void onClick(View v) {
                 if (updates.isChecked()) {
                     TurnOnUpdates();
-                    Toast.makeText(rootview.getContext(), "Live Updates On", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(rootview.getContext(), "Database Permission On", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     TurnOffUpdates();
-                    Toast.makeText(rootview.getContext(), "Live Updates Off", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(rootview.getContext(), "Database Permission Off", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -93,11 +85,11 @@ public class Settings extends Fragment{
             public void onClick(View v) {
                 if (location.isChecked()) {
                     TurnOnLocation();
-                    Toast.makeText(rootview.getContext(), "Location On", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(rootview.getContext(), "Internet Permission On", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     TurnOffLocation();
-                    Toast.makeText(rootview.getContext(), "Location Off", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(rootview.getContext(), "Internet Permission Off", Toast.LENGTH_SHORT).show();
                 }
             }
         });

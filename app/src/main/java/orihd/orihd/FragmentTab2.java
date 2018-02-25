@@ -100,96 +100,13 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_fragment_tab2, container, false);
-        SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        //Intent i= new Intent(getContext(), MyService.class);
-        //getContext().startService(i);
-/*
-        SupportPlaceAutocompleteFragment autocompleteFragment = (SupportPlaceAutocompleteFragment) this.getChildFragmentManager()
-                .findFragmentById(R.id.place_autocomplete_fragment);
 
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
 
-            }
-
-            @Override
-            public void onError(Status status) {
-
-            }
-        });
-*/
-
-        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseRef = database.getReference("Location");
-
-        databaseRef.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                int count = 0;
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    for (DataSnapshot snapshot2 : snapshot.getChildren()) {
-
-                        arrayvalue = new double[100];
-                        Double doubleval = snapshot2.getValue(Double.class);
-                        arrayvalue[count] = doubleval;
-                        count++;
-
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-        });
-        */
 
         return rootView;
     }
 
 
-/*
-    private void setUpClusterer() {
-        mClusterManager.setAnimation(false);
-        // Position the map.
-        getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 10));
-
-        // Initialize the manager with the context and the map.
-        // (Activity extends context, so we can pass 'this' in the constructor.)
-        mClusterManager = new ClusterManager<MyItem>(this, getMap());
-
-        // Point the map's listeners at the listeners implemented by the cluster
-        // manager.
-        getMap().setOnCameraIdleListener(mClusterManager);
-        getMap().setOnMarkerClickListener(mClusterManager);
-
-        // Add cluster items (markers) to the cluster manager.
-        addItems();
-    }
-
-    private void addItems() {
-
-        // Set some lat/lng coordinates to start with.
-        double lat = 51.5145160;
-        double lng = -0.1270060;
-
-        // Add ten cluster items in close proximity, for purposes of this example.
-        for (int i = 0; i < 10; i++) {
-            double offset = i / 60d;
-            lat = lat + offset;
-            lng = lng + offset;
-            MyItem offsetItem = new MyItem(lat, lng);
-            mClusterManager.addItem(offsetItem);
-        }
-    }
-    */
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
@@ -275,47 +192,7 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
             }
         });
 
-/*
-        for(int x = 0; x <6; x+=3){
-            double aqitemp;
-            double lattest;
-            double longtest;
 
-            aqitemp = arrayvalue[x];
-            int aqitest = (int) aqitemp;
-            lattest = arrayvalue[x+1];
-            longtest = arrayvalue[x+2];
-            LatLng newlocation = new LatLng(lattest,longtest);
-            String color;
-            switch(aqitest){
-                case 1:
-                    color = "#00f921";
-                    break;
-                case 2:
-                    color = "#e5e514";
-                    break;
-                case 3:
-                    color = "#ff9d00";
-                    break;
-                case 4:
-                    color = "#ff1500";
-                    break;
-                case 5:
-                    color = "#1b0289";
-                    break;
-                case 6:
-                    color = "#000000";
-                    break;
-                default:
-                    color = "#e5e514";
-                    break;
-
-            }
-            googleMap.addMarker(new MarkerOptions().position(newlocation).icon(getMarkerIcon(color))
-                    );
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(newlocation));
-            }
-            */
 
 
 
@@ -433,39 +310,6 @@ public class FragmentTab2 extends Fragment implements OnMapReadyCallback{
                     break;
             }
 
-            /*switch(color){
-                case "#00f921":
-
-                    //  BitmapDescriptor markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
-                    BitmapDescriptor markerDescriptor = getMarkerIcon("color");
-                    markerOptions.icon(markerDescriptor);
-                    break;
-                case "#e5e514":
-                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW);
-                    markerOptions.icon(markerDescriptor);
-                    break;
-                case "#ff9d00":
-                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
-                    markerOptions.icon(markerDescriptor);
-                    break;
-                case "#ff1500":
-                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED);
-                    markerOptions.icon(markerDescriptor);
-                    break;
-                case "#5500b7":
-                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA);
-                    markerOptions.icon(markerDescriptor);
-                    break;
-                case "#966600":
-                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET);
-                    markerOptions.icon(markerDescriptor);
-                    break;
-                default:
-                    markerDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE);
-                    markerOptions.icon(markerDescriptor);
-                    break;
-            }
-            */
 
 
 

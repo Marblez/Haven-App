@@ -25,6 +25,8 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,6 +47,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -82,7 +86,7 @@ import java.util.UUID;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 
-public class FragmentTab1 extends Fragment {
+public class FragmentTab1 extends Fragment implements View.OnClickListener {
     private Handler handler = new Handler();
     public static int tagval;
     public static String citynamuuu;
@@ -104,14 +108,16 @@ public class FragmentTab1 extends Fragment {
     public BluetoothGatt mbluetoothgatt;
     TextView nametext;
     String str;
-    public static UUID BatteryLevel    = UUID.fromString("00002a19-0000-1000-8000-00805f9b34fb");
+    public static UUID BatteryLevel = UUID.fromString("00002a19-0000-1000-8000-00805f9b34fb");
     private BluetoothGatt m_gatt;
 
     BluetoothGattCharacteristic mWriteCharacteristic;
+
     public FragmentTab1() throws IOException {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         TrackGPS NewGPS = new TrackGPS(getContext());
         double longitudev = NewGPS.getLongitude();
         double latitudev = NewGPS.getLatitude();
@@ -121,42 +127,15 @@ public class FragmentTab1 extends Fragment {
             getContext().startService(i);
         }
 
-
-        // BLUETOOTH IMPLEMENTATION WITH HARDWARE
-        //String address = MainActivity.finaladdress;
-        //BluetoothManager mBluetoothManager = MainActivity.bmstatic;
-        // BluetoothAdapter mBluetoothAdapter = MainActivity.bmadapter;
-        //BTLE_Device device = MainActivity.btlestatic;
-        // boolean ans = mBluetoothGatt.discoverServices();
-
-        //BluetoothGattService service = new BluetoothGattService();
-        // BluetoothGattCharacteristic battery = (BluetoothGattCharacteristic) service.getCharacteristic(UUID
-        //        .fromString("00002a19-0000-1000-8000-00805f9b34fb"));;
-
-        /*
-        BluetoothGattCharacteristic characteristic = new BluetoothGattCharacteristic(BatteryLevel,1,1);
-        byte[] ADCValue3 = characteristic.getValue();
-        String adc3Hex = ADCValue3.toString()
-                .replace("[", "")   //remove the right bracket
-                .replace("]", ""); //remove the left bracket
-        String ch3 = (String.valueOf(characteristic.getUuid()));
-        String ch3UUID = ch3.substring(0, Math.min(ch3.length(), 8));
-        String adc3hex6 = adc3Hex.substring(adc3Hex.length() - 6);
-        StringBuilder sb = new StringBuilder();
-        for (byte b : ADCValue3) {
-            if (sb.length() > 0) {
-                sb.append(':');
-            }
-            sb.append(String.format("%02x", b));
-        }
-        Log.w("ADC3", "StringBuilder " + sb);
-        */
         View rootview = inflater.inflate(R.layout.activity_fragment_tab1, container, false);
         final TextView change = (TextView) rootview.findViewById(R.id.NameText);
         TextView tagtext = (TextView) rootview.findViewById(R.id.textView2);
+        EditText status = (EditText) rootview.findViewById(R.id.editText3);
         ImageView custpic = (ImageView) rootview.findViewById(R.id.imageView3);
+        Button submit = (Button) rootview.findViewById(R.id.button6);
+        submit.setOnClickListener(this);
 
-        if(pathvar!=null) {
+        if (pathvar != null) {
 
             Bitmap saveicon = loadImageFromStorage(pathvar);
             custpic.setImageBitmap(saveicon);
@@ -165,37 +144,20 @@ public class FragmentTab1 extends Fragment {
             latindex = Double.toString(latitudev);
             longindex = Double.toString(longitudev);
 
-            Geocoder geocoder;
-            List<Address> addresses;
-            geocoder = new Geocoder(getContext(), Locale.getDefault());
-            try {
-                addresses = geocoder.getFromLocation(latitudev, longitudev, 1);
-                String var = addresses.get(0).getAddressLine(0);
-                String city = parsecity(var);
-                citynamuuu=city;
-                String settextvalue = settext(currname, city, latitudev, longitudev);
-                change.setText(settextvalue);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-
-
-
-        }
-        else {
+        } else {
             if (internet) {
                 Profile profile = Profile.getCurrentProfile();
-                try{
-                String facebook_id = profile.getId();
-                String firstName = profile.getFirstName();
-                String lastName = profile.getLastName();
-                String fullname = firstName + "_"+ lastName;
-                firstnamuuu = fullname;
-                facebookidfuck = facebook_id;
+                try {
+                    String facebook_id = profile.getId();
+                    String firstName = profile.getFirstName();
+                    String lastName = profile.getLastName();
+                    String fullname = firstName + "_" + lastName;
+                    firstnamuuu = fullname;
+                    facebookidfuck = facebook_id;
                     Context currentcontext = getContext();
-                    writeToFile(firstName, currentcontext);}
-                catch(NullPointerException e){
+                    writeToFile(firstName, currentcontext);
+                } catch (NullPointerException e) {
 
                     String firstName = "Edgar";
                     String lastName = "Palacios";
@@ -213,27 +175,8 @@ public class FragmentTab1 extends Fragment {
                 latindex = Double.toString(latitudev);
                 longindex = Double.toString(longitudev);
 
-                int aqiupdate = getAQI(latitudev, longitudev);
-                String aqitext = Integer.toString(aqiupdate);
 
                 String currname = profile.getFirstName();
-                //String city = "Evanston";
-                //String settextvalue = settext(currname, city, latitudev, longitudev);
-                //change.setText(settextvalue);
-
-                try {
-                    Geocoder geocoder;
-                    List<Address> addresses;
-                    geocoder = new Geocoder(getContext(), Locale.getDefault());
-                    addresses = geocoder.getFromLocation(latitudev, longitudev, 3);
-                    String var = addresses.get(0).getAddressLine(0);
-                    String city = parsecity(var);
-                    citynamuuu=city;
-                    String settextvalue = settext(currname, city, latitudev, longitudev);
-                    change.setText(settextvalue);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
 
                 int SDK_INT = android.os.Build.VERSION.SDK_INT;
@@ -259,69 +202,22 @@ public class FragmentTab1 extends Fragment {
                 }
             }
         }
-        /*Typeface poiret = Typeface.createFromAsset(getContext().getAssets(),"PoiretOne.tff");
-        change.setTypeface(poiret);
-        */
-        //pic.setImageBitmap(mIcon);
 
-
-        // SETTING PROGRESS-BAR STATUS AND NUMBERS
-
-
-/*
-        handler.post(new Runnable() {
-            public void run() {
-
-                int aqipercentage = aqiupdate/5;
-                filteredair.setProgress(aqipercentage);
-                // Particles range from 0 ~ 1 billion
-                // unfilteredair.setProgress(progressStatus);
-                // unfilteredairtext.setText(progressStatus + " PPB");
-            }
-        });
-
-*/
-
-
-        int percent = 38;
-        int percent2= 94;
-        int percent3=49;
-        int percent4=77;
-
-        DonutProgress donutProgress = (DonutProgress) rootview.findViewById(R.id.donut_progress);
-        donutProgress.setProgressWithAnimation(percent, 30);
-
-
-        DonutProgress donutProgress2 = (DonutProgress) rootview.findViewById(R.id.donut_progress2);
-        donutProgress2.setProgressWithAnimation(percent2, 30);
-
-
-        DonutProgress donutProgress3 = (DonutProgress) rootview.findViewById(R.id.donut_progress3);
-        donutProgress3.setProgressWithAnimation(percent3, 30);
-
-
-        DonutProgress donutProgress4 = (DonutProgress) rootview.findViewById(R.id.donutProgress4);
-        donutProgress4.setProgressWithAnimation(percent4, 30);
-
-        prog1 = donutProgress.getProgress();
-        prog2 = donutProgress2.getProgress();
-        prog3 = donutProgress3.getProgress();
-        prog4 = donutProgress4.getProgress();
 
         String aventador = FragmentTab1.facebookidfuck;
         Date currentTime = Calendar.getInstance().getTime();
         //WRITING USER DATA TO DATABASE
         //
         long mills = currentTime.getTime();
-        long Hours = mills/(1000 * 60 * 60);
-        long Mins = mills % (1000*60*60);
+        long Hours = mills / (1000 * 60 * 60);
+        long Mins = mills % (1000 * 60 * 60);
         String diff = Hours + ":" + Mins;
         int prog1 = FragmentTab1.prog1;
         int prog2 = FragmentTab1.prog2;
         int prog3 = FragmentTab1.prog3;
         int prog4 = FragmentTab1.prog4;
 
-        writeNewUser(aventador,diff,prog1,prog2,prog3,prog4,citynamuuu,firstnamuuu);
+        //writeNewUser(aventador, diff, prog1, prog2, prog3, prog4, citynamuuu, firstnamuuu);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference("Users").child(facebookidfuck).child("Friends");
@@ -333,7 +229,7 @@ public class FragmentTab1 extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String temp = snapshot.getValue().toString();
                     //String temp2 = Long.toString(temp);
-                    stringarray[count]=temp;
+                    stringarray[count] = temp;
                     count++;
                 }
 
@@ -347,187 +243,23 @@ public class FragmentTab1 extends Fragment {
 
         });
 
-    return rootview;
+        return rootview;
     }
 
     public void onServicesDiscovered(BluetoothGatt gatt, int status) {
 
         if (status == BluetoothGatt.GATT_SUCCESS) {
 
-        }
-        else {
+        } else {
             Toast.makeText(getApplicationContext(), "No Atts", Toast.LENGTH_SHORT).show();
 
         }
     }
 
-    public void disconnect() {
-        if (mBluetoothGatt == null) {
-            Toast.makeText(getContext(), "Gatt is null", Toast.LENGTH_SHORT).show();
 
-            return;
-        }
-        mBluetoothGatt.disconnect();
-    }
-
-    public void close() {
-        if (mBluetoothGatt == null) {
-            Toast.makeText(getContext(), "Gatt is null", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        mBluetoothGatt.close();
-        mBluetoothGatt = null;
-    }
-
-    public void readCharacteristic(BluetoothGattCharacteristic characteristic) {
-        if (mBluetoothGatt == null) {
-            Toast.makeText(getContext(), "Gatt is null", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        mBluetoothGatt.readCharacteristic(characteristic);
-    }
-
-    public void writeCharacteristic(BluetoothGattCharacteristic characteristic) {
-        if (mBluetoothGatt == null) {
-            Toast.makeText(getContext(), "Gatt is null", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        mBluetoothGatt.writeCharacteristic(characteristic);
-    }
-
-    /*
-    Profile profile = Profile.getCurrentProfile();
-    String firstName = profile.getFirstName();
-    String lastName = profile.getLastName();
-    String fullname = firstName + " " + lastName;
-    String facebook_id = profile.getId();
-*/
-    private void displayGattServices(List<BluetoothGattService> gattServices) {
-        if (gattServices == null) return;
-        String uuid = null;
-        String unknownServiceString = getResources().
-                getString(R.string.unknown_service);
-        String unknownCharaString = getResources().
-                getString(R.string.unknown_characteristic);
-        ArrayList<HashMap<String, String>> gattServiceData =
-                new ArrayList<HashMap<String, String>>();
-        ArrayList<ArrayList<HashMap<String, String>>> gattCharacteristicData
-                = new ArrayList<ArrayList<HashMap<String, String>>>();
-        ArrayList<ArrayList<BluetoothGattCharacteristic>> mGattCharacteristics =
-                new ArrayList<ArrayList<BluetoothGattCharacteristic>>();
-
-        // Loops through available GATT Services.
-        for (BluetoothGattService gattService : gattServices) {
-            HashMap<String, String> currentServiceData =
-                    new HashMap<String, String>();
-            uuid = gattService.getUuid().toString();
-            /*
-            currentServiceData.put(
-                    LIST_NAME, SampleGattAttributes.
-                            lookup(uuid, unknownServiceString));
-            currentServiceData.put(LIST_UUID, uuid);
-            gattServiceData.add(currentServiceData);
-*/
-            ArrayList<HashMap<String, String>> gattCharacteristicGroupData =
-                    new ArrayList<HashMap<String, String>>();
-            List<BluetoothGattCharacteristic> gattCharacteristics =
-                    gattService.getCharacteristics();
-            ArrayList<BluetoothGattCharacteristic> charas =
-                    new ArrayList<BluetoothGattCharacteristic>();
-            // Loops through available Characteristics.
-            for (BluetoothGattCharacteristic gattCharacteristic :
-                    gattCharacteristics) {
-                charas.add(gattCharacteristic);
-                HashMap<String, String> currentCharaData =
-                        new HashMap<String, String>();
-                uuid = gattCharacteristic.getUuid().toString();
-            /*
-                currentCharaData.put(
-                        LIST_NAME, SampleGattAttributes.lookup(uuid,
-                                unknownCharaString));
-                currentCharaData.put(LIST_UUID, uuid);
-                gattCharacteristicGroupData.add(currentCharaData);
-                */
-            }
-            mGattCharacteristics.add(charas);
-            gattCharacteristicData.add(gattCharacteristicGroupData);
-        }
-    }
-
-    public String parsecity(String state){
-        try {
-            List<String> StringList = Arrays.asList(state.split(","));
-            String temp2 = StringList.get(1);
-            return temp2;
-        }
-        catch(NullPointerException e){
-            String temp2 = "Unavailable";
-            return temp2;
-        }
-
-    }
-    public int getAQI(final double latitudev, final double longitudev){
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseRef = database.getReference("Location");
-
-        databaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                int count = 0;
-
-                double tempdistance = 99999;
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    for (DataSnapshot snapshot2 : snapshot.getChildren()) {
-                        double doubleval = snapshot2.getValue(double.class);
-                        arrayvalue[count] = doubleval;
-                        if (count != 0) {
-                            if (count % 3 == 0) {
-                                double testlong = arrayvalue[count - 1];
-                                double testlat = arrayvalue[count - 2];
-                                double aqivalue = arrayvalue[count - 3];
-                                double indexlong = Math.abs(longitudev - testlong);
-                                double indexlat = Math.abs(latitudev - testlat);
-                                double distlong = indexlong * indexlong;
-                                double distlat = indexlat * indexlat;
-                                double truedist = distlat + distlong;
-                                double distance = Math.sqrt(truedist);
-                                if (tempdistance > distance) {
-                                    tempdistance = distance;
-                                    AQI = (int) aqivalue;
-
-                                }
-
-                            }
-                        }
-                        count++;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-
-        });
-
-           return AQI;
-
-    }
-
-    public String settext(String firstName,String city, double latitude, double longitude){
-
-        int settextaqi = getAQI(latitude,longitude);
-        if(settextaqi==0){
-            String settextvalue = firstName +" | "+city+" | "+"AQI "+ "--";
-            return settextvalue;
-        }
-        else{
-            String settextvalue = firstName +" | "+city+" | "+"AQI "+ settextaqi;
-            return settextvalue;
-        }
+    public String settext(String firstName, String lastname) {
+        String settextvalue = firstName + lastname;
+        return settextvalue;
     }
 
     public static final BluetoothGattCallback readGattCallback = new BluetoothGattCallback() {
@@ -568,21 +300,20 @@ public class FragmentTab1 extends Fragment {
         }
 
         public void requestCharacteristics(BluetoothGatt gatt) {
-            gatt.readCharacteristic(chars.get(chars.size()-1));
+            gatt.readCharacteristic(chars.get(chars.size() - 1));
         }
 
         @Override
         public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
             if (status == 0) {
-            // REMEMBER TO CONFIGURE THE UUID VALUES FOR THESE CHARACTERISTICS
+                // REMEMBER TO CONFIGURE THE UUID VALUES FOR THESE CHARACTERISTICS
                 if (characteristic.getUuid().toString().substring(7, 8).equals("5")) {
                     int pm25 = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
 
-                } else if (characteristic.getUuid().toString().substring(7,8).equals("7")) {
+                } else if (characteristic.getUuid().toString().substring(7, 8).equals("7")) {
                     int gasvalue = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
-                }
-                  else if (characteristic.getUuid().toString().substring(7,8).equals("6")){
-                    int batterylevel = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8,0);
+                } else if (characteristic.getUuid().toString().substring(7, 8).equals("6")) {
+                    int batterylevel = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
                 }
 
                 chars.remove(chars.get(chars.size() - 1));
@@ -604,12 +335,12 @@ public class FragmentTab1 extends Fragment {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-    private String saveToInternalStorage(Bitmap bitmapImage){
+    private String saveToInternalStorage(Bitmap bitmapImage) {
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         // path to /data/data/yourapp/app_data/imageDir
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
         // Create imageDir
-        File mypath=new File(directory,"profile.jpg");
+        File mypath = new File(directory, "profile.jpg");
 
         FileOutputStream fos = null;
         try {
@@ -628,29 +359,25 @@ public class FragmentTab1 extends Fragment {
         return directory.getAbsolutePath();
     }
 
-    private Bitmap loadImageFromStorage(String path)
-    {
+    private Bitmap loadImageFromStorage(String path) {
 
         try {
-            File f=new File(path, "profile.jpg");
+            File f = new File(path, "profile.jpg");
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
             return b;
-        }
-        catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             return null;
         }
 
     }
 
-    private void writeToFile(String data,Context context) {
+    private void writeToFile(String data, Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
             outputStreamWriter.write(data);
             outputStreamWriter.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
@@ -663,21 +390,20 @@ public class FragmentTab1 extends Fragment {
         try {
             InputStream inputStream = context.openFileInput("config.txt");
 
-            if ( inputStream != null ) {
+            if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String receiveString = "";
                 StringBuilder stringBuilder = new StringBuilder();
 
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                while ((receiveString = bufferedReader.readLine()) != null) {
                     stringBuilder.append(receiveString);
                 }
 
                 inputStream.close();
                 ret = stringBuilder.toString();
             }
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             Log.e("login activity", "File not found: " + e.toString());
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
@@ -685,19 +411,19 @@ public class FragmentTab1 extends Fragment {
 
         return ret;
     }
-    private void writeNewUser(String userId, String timestamp, int p1, int p2, int p3, int p4, String city, String name) {
+
+
+    public void writeEntry(String timestamp, String journal) {
+        String userId = FragmentTab1.facebookidfuck;
         DatabaseReference mDatabase;
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Users").child(userId).child("Name").setValue(name);
-        mDatabase.child("Users").child(userId).child("TimeStamp").setValue(timestamp);
-        mDatabase.child("Users").child(userId).child("Location").setValue(city);
-        mDatabase.child("Users").child(userId).child("Prog1").setValue(p1);
-        mDatabase.child("Users").child(userId).child("Prog2").setValue(p2);
-        mDatabase.child("Users").child(userId).child("Prog3").setValue(p3);
-        mDatabase.child("Users").child(userId).child("Prog4").setValue(p4);
-
-
+        boolean check = checkWords(journal);
+        if(check){
+            mDatabase.child("Users").child(userId).child("Special Journals").child(timestamp).setValue(journal);
+        }
+        mDatabase.child("Users").child(userId).child("Journals").child(timestamp).setValue(journal);
     }
+
     public void onSuccess(LoginResult loginResult) {
         AccessToken accessToken = loginResult.getAccessToken();
 
@@ -719,7 +445,44 @@ public class FragmentTab1 extends Fragment {
 
         Profile profile = Profile.getCurrentProfile();
         if (profile != null) {
-            //get data here
+
+        }
+    }
+
+    public static boolean checkWords(String journal){
+        String[] arr = new String[]{"murder","kill","shoot", "anxiety", "withdrawal", "severe", "delusions", "adhd", "weight", "insomnia", "drowsiness", "suicidal", "appetite", "dizziness", "nausea", "episodes", "attacks", "sleepless", "seizures", "addictive", "weaned", "swings", "dysfunction","blurred", "irritability", "headache", "fatigue", "imbalance", "nervousness", "psychosis", "drowsy"};
+        for(int i =0; i<arr.length; i++){
+            if(journal.contains(arr[i])){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.button6:
+                Date currentTime = Calendar.getInstance().getTime();
+
+                long mills = currentTime.getTime();
+                long Hours = mills / (1000 * 60 * 60);
+                long Mins = mills % (1000 * 60 * 60);
+                String diff = Long.toString(Hours+Mins);
+                EditText editText = (EditText) getActivity().findViewById(R.id.editText3);
+                String content = editText.getText().toString();
+                writeEntry(diff,content);
+                editText.setText("");
+
+                Toast.makeText(getApplicationContext(), "Submitted!", Toast.LENGTH_LONG).show();
+                FragmentTab3 fragment = null;
+                fragment = new FragmentTab3();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.commit();
+                break;
         }
     }
 }
+

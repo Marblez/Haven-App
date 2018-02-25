@@ -32,7 +32,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.facebook.android:facebook-android-sdk:4.0.0'
-    compile 'com.google.android.gms:play-services:11.0.2'
+    compile 'com.google.android.gms:play-services:11.8.0'
     compile 'com.github.lzyzsd:circleprogress:1.2.1'
     compile 'com.github.jakob-grabner:Circle-Progress-View:v1.3'
     compile 'de.hdodenhof:circleimageview:2.1.0'
@@ -41,7 +41,7 @@ dependencies {
     compile 'com.google.maps.android:android-maps-utils:0.5+'
     compile 'com.txusballesteros:FitChart:1.0'
     compile 'com.android.support:support-vector-drawable:25.3.1'
-    compile 'com.google.firebase:firebase-core:11.0.2'
+    compile 'com.google.firebase:firebase-core:11.8.0'
     compile 'com.android.support.test.espresso:espresso-core:2.2.2'
     testCompile 'junit:junit:4.12'
 }

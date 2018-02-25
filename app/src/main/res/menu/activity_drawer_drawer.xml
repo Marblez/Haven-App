@@ -9,11 +9,8 @@
         <item
             android:id="@+id/maps"
             android:icon="@drawable/com"
-            android:title="Maps" />
-        <item
-            android:id="@+id/info"
-            android:icon="@drawable/info"
-            android:title="Info" />
+            android:title="Status" />
+
         <item
             android:id="@+id/settings"
             android:icon="@drawable/settingsicon"
@@ -25,11 +22,8 @@
             <item
                 android:id="@+id/addfam"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Manage Connections" />
-            <item
-                android:id="@+id/viewfam"
-                android:icon="@drawable/ic_menu_send"
-                android:title="View Connections" />
+                android:title="Add Connection" />
+
         </menu>
     </item>
 

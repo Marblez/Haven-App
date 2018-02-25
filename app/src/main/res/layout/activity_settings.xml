@@ -7,29 +7,28 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:paddingBottom="@dimen/activity_vertical_margin"
 android:paddingLeft="@dimen/activity_horizontal_margin"
-android:background="@drawable/compressvicky"
+android:background="@drawable/compressvicky2"
 android:paddingRight="@dimen/activity_horizontal_margin"
 android:paddingTop="@dimen/activity_vertical_margin"
 tools:context="orihd.orihd.Settings">
 
     <Switch
-        android:text="Enable Notifications                         "
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:layout_alignLeft="@+id/switch4"
-        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
         android:id="@+id/switch2"
-        android:layout_marginTop="11dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/imageView5"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:checked="true"
+        android:text="Enable Notifications                         "
+        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
 
     <Switch
-        android:text="Location Tracking                                  "
+        android:text="Internet Permission                                  "
         android:layout_width="wrap_content"
+        android:checked="true"
         android:layout_height="wrap_content"
         android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
         android:textSize="20dp"
@@ -41,81 +40,16 @@ tools:context="orihd.orihd.Settings">
         android:layout_alignParentStart="true" />
 
     <Switch
-        android:text="Live Updates                                        "
+        android:text="Database Permission                                 "
         android:layout_width="wrap_content"
         android:textSize="20dp"
         android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
         android:layout_height="wrap_content"
+        android:checked="true"
         android:textColor="@color/white"
         android:layout_marginTop="22dp"
         android:id="@+id/switch4"
         android:layout_below="@+id/switch2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Fan Speed"
-        android:layout_width="wrap_content"
-        android:textSize="20dp"
-        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
-        android:textColor="@color/white"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/seekBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
-        android:id="@+id/textView15" />
-
-    <TextView
-        android:text="0%"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView17"
-        android:textColor="@color/white"
-        android:layout_below="@+id/seekBar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp" />
-
-    <TextView
-        android:text="100%"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView17"
-        android:textColor="@color/white"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/textView19" />
-
-    <TextView
-        android:text="50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:layout_below="@+id/seekBar"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView20" />
-
-    <SeekBar
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="109dp"
-        android:textColor="@color/white"
-        android:id="@+id/seekBar"
-        android:layout_below="@+id/switch5"
-        android:layout_alignLeft="@+id/textView17"
-        android:layout_alignStart="@+id/textView17" />
-
-    <Switch
-       android:text="Air Filter                                                                                     "
-       android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
-       android:textSize="20dp"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-        android:textColor="@color/white"
-       android:layout_marginTop="24dp"
-       android:id="@+id/switch3"
-        android:layout_below="@+id/switch5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

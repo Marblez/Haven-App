@@ -54,25 +54,6 @@ public class FragmentTab5 extends Fragment {
     Context mcontext;
     private final static String TAG = FragmentTab3.class.getSimpleName();
 
-    public static final int REQUEST_ENABLE_BT = 1;
-    public static final int BTLE_SERVICES = 2;
-    private HashMap<String, BTLE_Device> mBTDevicesHashMap;
-    public static int favposition;
-    private ArrayList<BTLE_Device> mBTDevicesArrayList;
-    private ListAdapter_BTLE_Devices adapter;
-    public static String thename;
-    public static String thelocation;
-    public static String theaqi;
-    public static String theharmfulgas;
-    public static String thebatterylevel;
-    public static String theparticulates;
-    public static String thetimestamp;
-    private ListView listView;
-    public static List<MyItem2> itemlist;
-    public static Date previousTime;
-    private Button btn_Scan;
-    public int count;
-    private BroadcastReceiver_BTState mBTStateUpdateReceiver;
 
 
     @Override
@@ -155,7 +136,7 @@ public class FragmentTab5 extends Fragment {
                                         String theharmfulgas = displayitem.getharmfulgas();
                                         String thebatterylevel = displayitem.getbatterylevel();
                                         String thetimestamp = displayitem.getTimestamp();
-                                        favposition = position;
+
                                         Intent intent = new Intent(getActivity(), InfoActivity.class);
                                         intent.putExtra("The Name", thename);
                                         intent.putExtra("The Particulates", theharmfulgas);

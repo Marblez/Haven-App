@@ -66,10 +66,9 @@ public class FragmentTab6 extends Fragment implements Button.OnClickListener {
         Button button5 = (Button) rootView.findViewById(R.id.button5);
 
         String fbid = FragmentTab1.facebookidfuck;
-        String newtext = "Your UserID is "+ fbid;
 
         button5.setOnClickListener(this);
-        txt.setText(newtext);
+
 
 
 
@@ -81,21 +80,30 @@ public class FragmentTab6 extends Fragment implements Button.OnClickListener {
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.button5:
-                EditText edit22 = (EditText) getActivity().findViewById(R.id.editText2);
-                String addnew = edit22.getText().toString();
-                String fbid = FragmentTab1.facebookidfuck;
-                NewFriend(addnew,fbid);
+                EditText name = (EditText) getActivity().findViewById(R.id.contactName);
+                EditText email = (EditText) getActivity().findViewById(R.id.email);
+                EditText phone = (EditText) getActivity().findViewById(R.id.phone);
+                EditText relationship= (EditText) getActivity().findViewById(R.id.relationship);
+                String contactname = name.getText().toString();
+                String contactemail = email.getText().toString();
+                String contactphone = phone.getText().toString();
+                String contactrelationship = relationship.getText().toString();
+
+                String userId = FragmentTab1.facebookidfuck;
+                NewFriend(userId, contactname, contactemail, contactphone, contactrelationship);
                 Toast.makeText(getContext(), "Added!", Toast.LENGTH_LONG).show();
 
                 break;
         }
     }
 
-    private void NewFriend(String userId, String fbid) {
+    private void NewFriend(String userId, String name, String email, String phone, String relationship) {
         DatabaseReference mDatabase;
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Users").child(fbid).child("Friends").child(userId).setValue(userId);
-
+        mDatabase.child("Users").child(userId).child("Contacts").child(name).setValue(userId);
+        mDatabase.child("Users").child(userId).child("Contacts").child(name).child("Email").setValue(email);
+        mDatabase.child("Users").child(userId).child("Contacts").child(name).child("Phone").setValue(phone);
+        mDatabase.child("Users").child(userId).child("Contacts").child(name).child("Relationship").setValue(relationship);
     }
 }
 

@@ -14,49 +14,94 @@
 
 
     <ImageView
+        android:id="@+id/imageView8"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        app:srcCompat="@drawable/icon1"
-        android:id="@+id/imageView8"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView21"
+        app:srcCompat="@drawable/icon1" />
 
     <Button
-        android:text="Add"
+        android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
-        android:id="@+id/button5" />
+        android:layout_marginBottom="11dp"
+        android:text="Add" />
 
     <EditText
+        android:id="@+id/contactName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:textAlignment="gravity"
-        android:text="UserID"
-        android:gravity="center"
-        android:ems="10"
-        android:textColor="@color/white"
-        android:alpha="100"
-        android:id="@+id/editText2"
-        android:layout_above="@+id/button5"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="101dp" />
-
-    <TextView
-        android:text="Your UserID is"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:id="@+id/textView21"
         android:layout_below="@+id/imageView8"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp" />
+        android:layout_marginTop="21dp"
+        android:alpha="100"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:textAlignment="gravity"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Add a Contact"
+        android:textAppearance="@style/Base.ThemeOverlay.AppCompat"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/relationship"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/contactName"
+        android:layout_alignStart="@+id/contactName"
+        android:layout_alignTop="@+id/contactName"
+        android:layout_marginTop="76dp"
+        android:textColor="@color/white"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Relationship"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white" />
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relationship"
+        android:layout_alignLeft="@+id/relationship"
+        android:hint="Phone Number"
+        android:textColorHint="@color/white"
+        android:gravity="center"
+        android:layout_alignStart="@+id/relationship"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:ems="10"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phone"
+        android:layout_alignLeft="@+id/phone"
+        android:layout_alignStart="@+id/phone"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
 </RelativeLayout>

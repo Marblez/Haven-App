@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ORIHD.iml" filepath="$PROJECT_DIR$/ORIHD.iml" />
+      <module fileurl="file://C:\Users\Matthew Wang\Documents\OriHD-App\ORIHD.iml" filepath="C:\Users\Matthew Wang\Documents\OriHD-App\ORIHD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OriHD-App.iml" filepath="$PROJECT_DIR$/OriHD-App.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Matthew Wang\Documents\OriHD-App\app\app.iml" filepath="C:\Users\Matthew Wang\Documents\OriHD-App\app\app.iml" />
     </modules>
   </component>
 </project>
