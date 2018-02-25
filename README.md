@@ -1,15 +1,13 @@
-<h1> Mobile App for OriHD Summer internship </h1>
-<p> An Android mobile app in Java (AS) compatible with the OriHD air purifier. 
-Completed features including profile and AQI databasing with Google Firebase, FB Login, geocoder location tracking, 
-Google maps clustering display, UI development and Bluetooth TCP.
-</p>
-<p><strong>The mobile app was featured in an AmericanInno news article! Check out the article <a href = "https://www.americaninno.com/This+Smart+Portable+Air+Purifier+Doubles+as+a+Mask+to+Help+You+Breathe+Clean+Air">here.</a></strong></p>
-<img src="https://github.com/Marblez/OriHD-App/blob/master/login.jpg" width="230" height="400" align="left">
-<img src="https://github.com/Marblez/OriHD-App/blob/master/homepage.jpg" width="230" height="400" align="center">
-<img src="https://github.com/Marblez/OriHD-App/blob/master/map1.jpg" width="230" height="400" align="left">
-<img src="https://github.com/Marblez/OriHD-App/blob/master/map2.jpg" width="230" height="400" align="center">
-<img src="https://github.com/Marblez/OriHD-App/blob/master/settings.jpg" width="230" height="400" align="left">
-<img src="https://github.com/Marblez/OriHD-App/blob/master/info.jpg" width="230" height="400" align="center">
-<img src="https://github.com/Marblez/OriHD-App/blob/master/addfriend.jpg" width="230" height="400" align="left">
-<img src="https://github.com/Marblez/OriHD-App/blob/master/friendinfo.jpg" width="230" height="400" align="center">
-<img src="https://github.com/Marblez/OriHD-App/blob/master/friendlist.jpg" width="230" height="400" align="left">
+## Our Mission
+Our mission at Team Haven is to not just improve diagnosis of mental health and increasing efficiency of communication between patients and medical professionals, but also raise awareness of mental health problems while welcoming everyone to contribute to our project. The Firebase database key is open read/write and can be found in the HavenScript files. 
+
+We hope people can find more ways to analyze and make sense of user data to help them pre-diagnose mental illnesses while helping medical professionals stay aware of all the data provided to them. 
+
+## Haven Website
+The medical professional-facing website is in the root directory of the Github repository and is hosted by Github Pages and set up with Bootstrap. 
+
+## Haven Android App
+The client-facing Android application is in the Haven-App folder and is built with Android Studio.
+
+## Haven Scripts
+The NodeJS and Python scripts used to run Haven are in the folder HavenScripts and are used to update Firebase, run cloud-based lexical analysis on the database data, and word-spotting for mental illness pre-diagnosis.
